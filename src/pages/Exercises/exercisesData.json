@@ -1,0 +1,32 @@
+[
+	{
+		"exerciseID": 1,
+		"exerciseName": "Exercise first",
+		"video": "video",
+		"description": "Some example description of this exercise"
+	},
+	{
+		"exerciseID": 2,
+		"exerciseName": "Exercise second",
+		"video": "video",
+		"description": "Some example description of this exercise"
+	},
+	{
+		"exerciseID": 3,
+		"exerciseName": "Exercise third",
+		"video": "video",
+		"description": "Some example description of this exercise"
+	},
+	{
+		"exerciseID": 4,
+		"exerciseName": "Exercise fourth",
+		"video": "video",
+		"description": "Some example description of this exercise"
+	},
+	{
+		"exerciseID": 5,
+		"exerciseName": "Exercise fifth",
+		"video": "video",
+		"description": "Some example description of this exercise"
+	}
+]

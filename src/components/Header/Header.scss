@@ -1,0 +1,47 @@
+@import '../../main.scss';
+
+header {
+	background: $black;
+	padding: 0 1rem;
+	padding-top: 0.5rem;
+	border-bottom: 1px solid $black-lighter-two;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1008;
+
+	h1 {
+		text-transform: capitalize;
+	}
+	.user-redirect {
+		display: flex;
+		align-items: center;
+		i {
+			font-size: 1.5rem;
+			margin-bottom: 0;
+			margin-left: 0.75rem;
+		}
+	}
+
+	&.simple {
+		padding-top: 0;
+		> div {
+			width: 33%;
+			&.title {
+				display: flex;
+				justify-content: center;
+			}
+		}
+		a {
+			font-size: 1rem;
+			text-transform: capitalize;
+		}
+
+		h1 {
+			font-size: 1.5rem;
+		}
+	}
+}

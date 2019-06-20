@@ -1,0 +1,120 @@
+@import './main.scss';
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+		'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	background: $black;
+}
+
+#root {
+	margin: 4rem 0;
+}
+
+header {
+	max-height: 4rem;
+	height: 4rem;
+}
+
+main {
+	padding: 0.5rem 1rem;
+	height: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	@include respond-to(large) {
+		padding-left: 215px;
+		max-width: 1024px;
+	}
+}
+
+footer {
+	max-height: 4rem;
+	height: 4rem;
+}
+* {
+	text-decoration: none;
+	color: $white-darker-one;
+	box-sizing: border-box;
+}
+
+h1 {
+	margin: 0.5rem 0;
+	font-size: 1.8rem;
+}
+h2 {
+	margin: 0.5rem 0;
+	font-size: 1.5rem;
+}
+h3 {
+	margin: 0.5rem 0;
+	font-size: 1.3rem;
+}
+h4 {
+	margin: 0.5rem 0;
+	font-size: 1.2rem;
+}
+
+a {
+	cursor: pointer;
+	color: $white-darker-three;
+	&.active,
+	&.active i {
+		color: $white;
+	}
+}
+
+i {
+	font-size: 1.125rem;
+	color: #666;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.update-container {
+	width: 100%;
+	padding-bottom: 1rem;
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	&.active {
+		height: 80px;
+	}
+	.loader {
+		position: fixed;
+		top: 80px;
+		height: auto;
+		p {
+			display: none;
+		}
+		.lds-default {
+			transform: scale(0.75);
+		}
+	}
+
+	.refresh-button {
+		display: none;
+		appearance: none;
+		background: $black-lighter-one;
+		border-radius: 1rem;
+		padding: 0.25rem 0.75rem;
+		border: 1px solid $white-darker-three;
+		color: $white-darker-three;
+		cursor: pointer;
+		@include respond-to(large) {
+			display: block;
+		}
+	}
+}

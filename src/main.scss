@@ -1,0 +1,24 @@
+// Color palette
+
+$black: #111;
+$black-lighter-one: #161616;
+$black-lighter-two: #222;
+$black-lighter-three: #333;
+
+$white: #fff;
+$white-darker-one: #fafafa;
+$white-darker-two: #ddd;
+$white-darker-three: #bbb;
+
+$primary: #4b22d5;
+$primary-lighter-one: #6942e9;
+
+$secondary: #43c7fe;
+
+@mixin respond-to($media) {
+	@if $media == large {
+		@media only screen and (min-width: 1024px) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+@import '../../../main.scss';
+
+.exercise-card {
+    background-color: $black-lighter-two;
+    margin:25px 0px;
+    padding: 10px;
+    h2{
+        margin: 0;
+    }
+}
