@@ -1,10 +1,10 @@
-@import '../../main.scss';
+@import "../../main.scss";
 
 header {
 	background: $black;
 	padding: 0 1rem;
 	padding-top: 0.5rem;
-	border-bottom: 1px solid $black-lighter-two;
+	border-bottom: 1px solid $white-darker-two;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -15,10 +15,14 @@ header {
 
 	h1 {
 		text-transform: capitalize;
+		color: $white;
 	}
 	.user-redirect {
 		display: flex;
 		align-items: center;
+		p {
+			color: $white;
+		}
 		i {
 			font-size: 1.5rem;
 			margin-bottom: 0;

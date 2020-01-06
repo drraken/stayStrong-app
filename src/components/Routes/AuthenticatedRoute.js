@@ -1,6 +1,6 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const AuthenticatedRoute = ({ component: C, props: cProps, ...rest }) => {
 	return (
@@ -10,23 +10,19 @@ const AuthenticatedRoute = ({ component: C, props: cProps, ...rest }) => {
 				cProps.isAuthenticated ? (
 					<C {...props} {...cProps} />
 				) : (
-					<Redirect
-						to={`/login?redirect=${props.location.pathname}${
-							props.location.search
-						}`}
-					/>
+					<Redirect to='/login' />
 				)
 			}
 		/>
-	)
-}
+	);
+};
 AuthenticatedRoute.propTypes = {
 	component: PropTypes.func,
 	props: PropTypes.object,
 	rest: PropTypes.object,
 	location: PropTypes.shape({
 		search: PropTypes.string,
-		pathname: PropTypes.string,
-	}),
-}
-export default AuthenticatedRoute
+		pathname: PropTypes.string
+	})
+};
+export default AuthenticatedRoute;

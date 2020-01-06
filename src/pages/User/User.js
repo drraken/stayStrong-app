@@ -1,24 +1,39 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import './User.scss';
+import { Auth } from 'aws-amplify';
 import { useStateValue } from '../../stateProvider.js';
 
 const User = () => {
 	const [{ user }, dispatch] = useStateValue();
 
+	const handleLogOut = async event => {
+		event.preventDefault();
+		try {
+			Auth.signOut();
+			dispatch({
+				type: 'authentication-user',
+				isAuthenticated: false,
+				userName: ''
+			});
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+
 	return (
-		<div className="user-view">
-			<div className="userprofile">
-				<div className="user-section">
-					<div className="user-icon">
-						{user.firstName.slice(0, 1)}
+		<div className='user-view'>
+			<div className='userprofile'>
+				<div className='user-section'>
+					<div className='user-icon'>{user.userName.slice(0, 1)}</div>
+					<div className='user-details'>
+						<h2>{`${user.userName}`}</h2>
 					</div>
-					<div className="user-details">
-						<h2>{`${user.firstName} ${user.lastName}`}</h2>
-					</div>
+					<button type='button' onClick={handleLogOut}>
+						Log out
+					</button>
 				</div>
 			</div>
-			Here will be your profile data and all the badges/prizes you collected over your whole training career.
 		</div>
 	);
 };

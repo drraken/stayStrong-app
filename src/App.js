@@ -1,5 +1,6 @@
-import React from 'react';
-import { StateProvider } from './stateProvider';
+import React, { useEffect, useState } from 'react';
+import { Auth } from 'aws-amplify';
+import { StateProvider, useStateValue } from './stateProvider.js';
 import './App.scss';
 import AppContent from './AppContent.js';
 
@@ -9,6 +10,7 @@ const App = () => {
 			language: 'en',
 			theme: 'black',
 			location:
+				// eslint-disable-next-line no-nested-ternary
 				window.location.pathname.replace('/', '').length > 0
 					? window.location.pathname.replace('/', '').indexOf('/') ===
 					  -1
@@ -21,105 +23,95 @@ const App = () => {
 										.replace('/', '')
 										.indexOf('/')
 								)
-					: 'home',
+					: 'home'
 		},
 		user: {
-			isAuthenticated: true,
-			role: '',
-			firstName: 'User',
-			lastName: 'Name',
-			uid: window.localStorage.getItem('UID')
-				? window.localStorage.getItem('UID')
-				: '',
+			isAuthenticated: false,
+			isAuthenticating: true,
+			userName: ''
 		},
-		users: [],
-		solutions: [],
-		tasks: [],
-		orders: [],
+		users: []
 	};
+
+	const [sessionState, setSessionState] = useState(initialState);
+	useEffect(() => {
+		function checkCurrentSession() {
+			Auth.currentAuthenticatedUser({
+				bypassCache: false
+			})
+				.then(data =>
+					setSessionState({
+						...sessionState,
+						user: {
+							...sessionState.user,
+							isAuthenticated: true,
+							isAuthenticating: false,
+							userName: data.username
+						}
+					})
+				)
+				.catch(err =>
+					setSessionState({
+						...sessionState,
+						user: {
+							...sessionState.user,
+							isAuthenticating: false
+						}
+					})
+				);
+		}
+		if (sessionState !== null) {
+			checkCurrentSession();
+		}
+	}, []);
 
 	const reducer = (state, action) => {
 		switch (action.type) {
 			case 'reset':
-				return { initialState };
-			case 'authentication':
+				return { sessionState };
+			case 'authentication-user':
 				return {
 					...state,
 					user: {
 						...state.user,
-						isAuthenticated: action.authenticated,
-					},
+						isAuthenticated: action.isAuthenticated,
+						userName: action.userName
+					}
 				};
-			case 'orders':
+			case 'authenticating':
 				return {
 					...state,
-					orders: action.data,
+					user: {
+						...state.user,
+						isAuthenticating: action.isAuthenticating
+					}
 				};
 			case 'location':
 				return {
 					...state,
 					app: {
 						...state.app,
-						location: action.newLocation,
-					},
+						location: action.newLocation
+					}
 				};
 			case 'header':
 				return {
 					...state,
 					app: {
 						...state.app,
-						headerMode: action.newHeaderMode,
-					},
-				};
-			case 'user':
-				return {
-					...state,
-					user: {
-						...state.user,
-						uid: action.uid,
-					},
-				};
-			case 'user-name':
-				return {
-					...state,
-					user: {
-						...state.user,
-						firstName: action.firstName,
-						lastName: action.lastName,
-					},
-				};
-			case 'users':
-				return {
-					...state,
-					users: action.data,
-				};
-			case 'solutions':
-				return {
-					...state,
-					solutions: action.data,
-				};
-			case 'tasks':
-				return {
-					...state,
-					tasks: action.data,
-				};
-			case 'role':
-				return {
-					...state,
-					user: {
-						...state.user,
-						role: action.newRole,
-					},
+						headerMode: action.newHeaderMode
+					}
 				};
 			default:
 				return state;
 		}
 	};
-
 	return (
-		<StateProvider initialState={initialState} reducer={reducer}>
-			<AppContent />
-		</StateProvider>
+		!sessionState.user.isAuthenticating && (
+			<StateProvider initialState={sessionState} reducer={reducer}>
+				<AppContent />
+			</StateProvider>
+		)
 	);
 };
 
