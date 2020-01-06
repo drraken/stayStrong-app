@@ -2,7 +2,9 @@
 import React from 'react';
 import './User.scss';
 import { Auth } from 'aws-amplify';
+import { NavLink} from 'react-router-dom';
 import { useStateValue } from '../../stateProvider.js';
+
 
 const User = () => {
 	const [{ user }, dispatch] = useStateValue();
@@ -32,6 +34,19 @@ const User = () => {
 					<button type='button' onClick={handleLogOut}>
 						Log out
 					</button>
+					<NavLink
+						to='/changepassword'
+						onClick={() => {
+							dispatch({
+								type: 'location',
+								newLocation: 'changepassword'
+							});
+						}}
+					>
+						<span>
+							Change Password
+						</span>
+					</NavLink>
 				</div>
 			</div>
 		</div>

@@ -2,11 +2,15 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import { Auth } from 'aws-amplify';
-import { NavLink } from 'react-router-dom';
-import { useStateValue } from '../../stateProvider.js';
+import { NavLink,useHistory } from 'react-router-dom';
+import { useStateValue } from '../../../stateProvider.js';
+import FormErrors from '../../../components/Validation/FormErrors.js';
+import Validate from '../../../components/Validation/FormValidation.js';
+
 
 const Register = () => {
-	const [dispatch] = useStateValue();
+	const history = useHistory();
+	const [{user},dispatch] = useStateValue();
 	const defaultState = {
 		username: '',
 		email: '',
@@ -19,11 +23,30 @@ const Register = () => {
 		}
 	};
 	const [state, setState] = useState(defaultState);
+	console.log(state);
+	const clearErrorState = () => {
+		setState({
+		  ...state,
+		  errors: {
+			cognito: null,
+			blankfield: false,
+			passwordmatch: false
+		  }
+		});
+	  }
 
 	const handleSubmit = async event => {
 		event.preventDefault();
 
-		// AWS Cognito integration here
+		clearErrorState();
+		const error = Validate(event, state);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		}
+
 		const { username, email, password } = state;
 		try {
 			const signUpResponse = await Auth.signUp({
@@ -34,12 +57,13 @@ const Register = () => {
 					email: email
 				}
 			});
-			console.log(signUpResponse);
-			// redirect
+			history.push('/welcome');
+			
 		} catch (error) {
 			let err = null;
 			!error.message ? (err = { message: error }) : (err = error);
 			setState({
+				...state,
 				errors: {
 					...state.errors,
 					cognito: error
@@ -53,14 +77,16 @@ const Register = () => {
 			...state,
 			[event.target.id]: event.target.value
 		});
-
-		// document.getElementById(event.target.id).classList.remove('is-danger');
+		console.log(state);
+		document.getElementById(event.target.id).classList.remove('is-danger');
 	};
 
 	return (
 		<section className='section auth'>
 			<div className='container'>
 				<h1>Register</h1>
+				<FormErrors formerrors={state.errors} />
+
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory, NavLink } from 'react-router-dom';
-import { useStateValue } from '../../stateProvider.js';
+import { useStateValue } from '../../../stateProvider.js';
+import FormErrors from '../../../components/Validation/FormErrors.js';
+import Validate from '../../../components/Validation/FormValidation.js';
 
 const Login = () => {
-	// const history = useHistory();
+	const history = useHistory();
 	const [{ user }, dispatch] = useStateValue();
 	const defaultState = {
 		username: '',
@@ -17,35 +19,49 @@ const Login = () => {
 
 	const [state, setState] = useState(defaultState);
 
+	const clearErrorState = () => {
+		setState({
+		  ...state,
+		  errors: {
+			cognito: null,
+			blankfield: false
+		  }
+		});
+	  };
+
 	const handleSubmit = async event => {
 		event.preventDefault();
 
-		// AWS Cognito integration here
+		clearErrorState();
+		const error = Validate(event, state);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		}
 
 		try {
 			const loggedUser = await Auth.signIn(
 				state.username,
 				state.password
 			);
-			console.log(loggedUser);
-			// redirect
 			dispatch({
 				type: 'authentication-user',
 				isAuthenticated: true,
 				userName: loggedUser.username
 			});
-			console.log(loggedUser.username);
 			dispatch({
 				type: 'location',
 				newLocation: 'home'
 			});
-			// history.push('/');
-			console.log(user);
+			history.push('/');
 		} catch (error) {
 			let err = null;
 			// eslint-disable-next-line no-unused-expressions
 			!error.message ? (err = { message: error }) : (err = error);
 			setState({
+				...state,
 				errors: {
 					...state.errors,
 					cognito: error
@@ -59,13 +75,14 @@ const Login = () => {
 			...state,
 			[event.target.id]: event.target.value
 		});
-		// document.getElementById(event.target.id).classList.remove('is-danger');
+		document.getElementById(event.target.id).classList.remove('is-danger');
 	};
 	return (
 		<section className='section auth'>
 			<div className='container'>
 				<h1>Log in</h1>
-
+				<FormErrors formerrors={state.errors} />
+				
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>
@@ -97,7 +114,17 @@ const Login = () => {
 					</div>
 					<div className='field'>
 						<p className='control'>
-							<a href='/forgotpassword'>Forgot password?</a>
+						<NavLink
+								to='/forgotpassword'
+								onClick={() => {
+									dispatch({
+										type: 'location',
+										newLocation: 'forgotpassword'
+									});
+								}}
+							>
+								<span>Forgot password? Click here.</span>
+							</NavLink>
 						</p>
 					</div>
 					<div className='field'>
