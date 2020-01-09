@@ -3,8 +3,8 @@ import './Loader.scss';
 
 const Loader = () => {
 	return (
-		<div className="loader">
-			<div className="lds-default">
+		<div className='loader'>
+			<div className='lds-default'>
 				<div />
 				<div />
 				<div />

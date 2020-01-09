@@ -4,6 +4,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { useStateValue } from '../../../stateProvider.js';
 import FormErrors from '../../../components/Validation/FormErrors.js';
 import Validate from '../../../components/Validation/FormValidation.js';
+import Loading from '../../../components/Loader/Loader';
 
 const Login = () => {
 	const history = useHistory();
@@ -18,6 +19,7 @@ const Login = () => {
 	};
 
 	const [state, setState] = useState(defaultState);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const clearErrorState = () => {
 		setState({
@@ -31,7 +33,7 @@ const Login = () => {
 
 	const handleSubmit = async event => {
 		event.preventDefault();
-
+		setIsLoading(true);
 		clearErrorState();
 		const error = Validate(event, state);
 		if (error) {
@@ -67,6 +69,7 @@ const Login = () => {
 					cognito: error
 				}
 			});
+			setIsLoading(false);
 		}
 	};
 
@@ -150,6 +153,13 @@ const Login = () => {
 						</p>
 					</div>
 				</form>
+				{isLoading === true ? (
+					<Loading />
+				) : 
+				(
+					<p></p>
+				)}
+				
 			</div>
 		</section>
 	);

@@ -1,21 +1,36 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.scss";
-import Amplify from "aws-amplify";
-import config from "./config";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.scss';
+import Amplify from 'aws-amplify';
+import config from './config';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
 Amplify.configure({
 	Auth: {
 		mandatorySignId: true,
 		region: config.cognito.REGION,
 		userPoolId: config.cognito.USER_POOL_ID,
+		identityPoolId: config.cognito.IDENTITY_POOL_ID,
 		userPoolWebClientId: config.cognito.APP_CLIENT_ID
+	},
+	API:{
+		endpoints:[
+			{
+				name: 'products',
+				endpoint: config.apiGateway.URL,
+				region: config.apiGateway.REGION
+			},
+			{
+				name: 'meals',
+				endpoint: config.apiGateway.URL,
+				region: config.apiGateway.REGION
+			}
+		]
 	}
 });
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

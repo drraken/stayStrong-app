@@ -13,8 +13,13 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ForgotPasswordVerification from './pages/Auth/ForgotPasswordVerification/ForgotPasswordVerification';
 import ChangePasswordConfirm from './pages/Auth/ChangePasswordConfirm/ChangePasswordConfirm.js';
 import ChangePassword from './pages/Auth/ChangePassword/ChangePassword.js';
+import NotFound from './pages/NotFound/NotFound';
+import AddProduct from './pages/AddProduct/AddProduct.js';
+import NewProduct from './pages/NewProduct/NewProduct.js';
 
 import { useStateValue } from './stateProvider.js';
+
+
 
 
 
@@ -73,6 +78,18 @@ const AppContent = () => {
 					component={ChangePassword}
 					props={user}
 		        />
+				<AuthenticatedRoute path='/addproduct/'
+					exact 
+					component={AddProduct}
+					props={user}
+		        />
+				<AuthenticatedRoute path='/createproduct/'
+					exact 
+					component={NewProduct}
+					props={user}
+		        />
+				{/* <Route component={NotFound}/> */}
+				
 			</main>
 			{/* <Navigation /> */}
 		</Router>
