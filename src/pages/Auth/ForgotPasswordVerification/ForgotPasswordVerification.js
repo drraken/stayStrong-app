@@ -47,7 +47,7 @@ const ForgotPasswordVerification = () => {
             state.verificationcode,
             state.newpassword
         );
-    history.push('/changepasswordconfirmation');
+    history.push('/changepasswordconfirm');
     }catch(error){
         let err = null;
         // eslint-disable-next-line no-unused-expressions

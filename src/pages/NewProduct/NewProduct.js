@@ -45,7 +45,6 @@ const NewProduct = () => {
 			...state,
 			[event.target.id]: event.target.value
 		});
-		console.log(state);
 	};
 	  return (
 		<div className="NewNote">
@@ -130,7 +129,7 @@ const NewProduct = () => {
 			</div>
 			 <div className='field'>
 				<p className='control'>
-					<button className='button is-success' type='submit' isLoading={isLoading}>
+					<button className='button is-success' type='submit'>
 						Create product
 					</button>
 				</p>

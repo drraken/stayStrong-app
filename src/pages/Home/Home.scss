@@ -8,6 +8,29 @@
 	height: 100%;
 	padding-top: 1rem;
 	//respond to large dodac
+	.content{
+		width: 100%;
+	}
+	ul{
+		margin-bottom: 30px;
+		.li-header-section{
+			display: inline;
+		}
+		a{
+			float: right;
+			padding: 5px;
+			i{
+				color: white;
+				font-size: 25px;
+			}
+		}
+		li{
+			p{
+				display: inline;
+				padding: 4px;
+			}
+		}
+	}
 	button{
 		color:black;
 	}
@@ -83,7 +106,7 @@
 					p {
 						margin: 0;
 						padding: 0;
-						font-size: 13px;
+						font-size: 12px;
 					}
 				}
 			}

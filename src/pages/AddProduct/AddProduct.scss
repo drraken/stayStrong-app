@@ -1,3 +1,39 @@
-button{
-    color:black;
+@import "./../../main.scss";
+
+.add-product-view{
+    .search-box{
+        border: 1px solid $white-darker-three;
+        margin-top: 10px;
+        padding: 10px 0px;
+        width: 100%;
+        text-align: center;
+    }
+    ul{
+       
+        a{
+            &:nth-child(1){
+                display: none;
+            }   
+        }
+        p{
+            display: inline;
+            margin-right: 10px;
+        }
+    }
+    button{
+        color:white;
+        border: none;
+        background-color: $black;
+        position: absolute;
+        bottom: 0;
+        padding: 10px 0px;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        i{
+            color:white;
+            padding: 5px;
+            margin:0 10px 0 10px;
+        }
+    }
 }
