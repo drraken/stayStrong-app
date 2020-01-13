@@ -5,6 +5,7 @@ import { useStateValue } from '../../../stateProvider.js';
 import FormErrors from '../../../components/Validation/FormErrors.js';
 import Validate from '../../../components/Validation/FormValidation.js';
 import Loading from '../../../components/Loader/Loader';
+import './Login.scss';
 
 const Login = () => {
 	const history = useHistory();
