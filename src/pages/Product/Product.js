@@ -53,19 +53,18 @@ const Product = (props) => {
         setMealState({
             ...mealState,
             name: state.name,
-            kcal: (state.kcal * mealState.amount /100).toFixed(1),
-            proteins: (state.proteins * mealState.amount /100).toFixed(1),
-            fats: (state.fats * mealState.amount /100).toFixed(1),
-            carbs: (state.carbs * mealState.amount /100).toFixed(1)
+            kcal: (Number(state.kcal) * Number(mealState.amount) /100).toFixed(1),
+            proteins: (Number(state.proteins) * Number(mealState.amount) /100).toFixed(1),
+            fats: (Number(state.fats) * Number(mealState.amount) /100).toFixed(1),
+            carbs: (Number(state.carbs) * Number(mealState.amount) /100).toFixed(1)
         });
     },[mealState.amount])
-    console.log(mealState);
     function createMeal(meal){
 		return API.post('meals',`/meals/${props.match.params.id}`,{ 
 			body: meal
 		});
 	}
-
+    
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
@@ -84,7 +83,7 @@ const Product = (props) => {
 			[event.target.id]: event.target.value
 		});
 	};
-    
+    console.log(mealState);
 	return (
         isLoading ? <Loading/> :
 		<div className='product-view'>

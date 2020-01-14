@@ -5,11 +5,15 @@
         border: 1px solid $white-darker-three;
         margin-top: 10px;
         padding: 10px 0px;
-        width: 100%;
+        width: 94%;
         text-align: center;
+        top:65px;
+        left:10px;
+        position: fixed;
+        background-color: $home-body;
     }
     ul{
-       
+       margin-top: 50px;
         a{
             &:nth-child(1){
                 display: none;
@@ -24,7 +28,7 @@
         color:white;
         border: none;
         background-color: $black;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         padding: 10px 0px;
         left: 0;

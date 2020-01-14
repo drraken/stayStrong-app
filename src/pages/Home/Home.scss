@@ -11,10 +11,9 @@
 	.content{
 		width: 100%;
 	}
-	ul{
-		margin-bottom: 30px;
+	div{
 		.li-header-section{
-			display: inline;
+			display: inline-block;
 		}
 		a{
 			float: right;
@@ -25,10 +24,10 @@
 			}
 		}
 		li{
-			p{
-				display: inline;
-				padding: 4px;
-			}
+			
+			display: inline;
+			padding: 4px;
+		
 		}
 	}
 	button{
@@ -57,25 +56,25 @@
 				&:nth-child(1) {
 					#colorLineOverlay {
 						background-color: #1eb71b;
-						width: 12%;
+						width: 3%;
 					}
 				}
 				&:nth-child(2) {
 					#colorLineOverlay {
 						background-color: #1c6ed3;
-						width: 12%;
+						width: 2%;
 					}
 				}
 				&:nth-child(3) {
 					#colorLineOverlay {
 						background-color: #cacc13;
-						width: 19%;
+						width: 1%;
 					}
 				}
 				&:nth-child(4) {
 					#colorLineOverlay {
 						background-color: #7113ac;
-						width: 8%;
+						width: 1%;
 					}
 				}
 				.proggresiveLine {

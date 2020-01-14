@@ -14,7 +14,19 @@ const Home = () => {
 
 	const [mealState,setMealState] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isClickedBreakfast, setIsClickedBreakfast] = useState(false);
+	const [isClickedSnack1, setIsClickedSnack1] = useState(false);
+	const [isClickedLunch, setIsClickedLunch] = useState(false);
+	const [isClickedSnack2, setIsClickedSnack2] = useState(false);
+	const [isClickedDinner, setIsClickedDinner] = useState(false);
 	
+	const toggleTrueFalse = () => setIsClickedBreakfast(!isClickedBreakfast);
+	const toggleTrueFalse1 = () => setIsClickedSnack1(!isClickedSnack1);
+	const toggleTrueFalse2 = () => setIsClickedLunch(!isClickedLunch);
+	const toggleTrueFalse3 = () => setIsClickedSnack2(!isClickedSnack2);
+	const toggleTrueFalse4 = () => setIsClickedDinner(!isClickedDinner);
+
+
 	function loadMeals() {
 		return API.get('meals', '/meals');
 	}
@@ -39,124 +51,111 @@ const Home = () => {
 	},[user.isAuthenticated])
 	
 
-	function renderMealListBreakfast(mealState){
+	function renderMealList(mealState,type){
 		return [{}].concat(mealState).map((item) =>
-			item.type === 'Breakfast' ?
-			<li key={item.mealId}>		
-				<p>{item.name}</p>
-				<p>{item.kcal} kcal</p>	
-				<p>{item.proteins} P</p>	
-				<p>{item.fats} F</p>	
-				<p>{item.carbs} C</p>	
-			</li>
+			item.type === type ?
+			<ul key={item.mealId}>		
+				<li>{item.name}</li>
+				<li>{item.kcal} kcal</li>	
+				<li>{item.proteins} P</li>	
+				<li>{item.fats} F</li>	
+				<li>{item.carbs} C</li>	
+			</ul>
 			:
 			''
 	);
 	}
-	function renderMealListSnack1(mealState){
-		return [{}].concat(mealState).map((item) =>
-			item.type === 'Snack1' ?
-			<li key={item.mealId}>		
-				<p>{item.name}</p>
-				<p>{item.kcal} kcal</p>	
-				<p>{item.proteins} P</p>	
-				<p>{item.fats} F</p>	
-				<p>{item.carbs} C</p>	
-			</li>
-			:
-			''
-		);
-	}
-	function renderMealListLunch(mealState){
-		return [{}].concat(mealState).map((item) =>
-			item.type === 'Lunch' ?
-			<li key={item.mealId}>		
-				<p>{item.name}</p>
-				<p>{item.kcal} kcal</p>	
-				<p>{item.proteins} P</p>	
-				<p>{item.fats} F</p>	
-				<p>{item.carbs} C</p>	
-			</li>
-			:
-			''
-		);
-	}
-	function renderMealListSnack2(mealState){
-		return [{}].concat(mealState).map((item) =>
-			item.type === 'Snack2' ? 
-			<li key={item.mealId}>		
-				<p>{item.name}</p>
-				<p>{item.kcal} kcal</p>	
-				<p>{item.proteins} P</p>	
-				<p>{item.fats} F</p>	
-				<p>{item.carbs} C</p>	
-			</li>
-			:
-			''
-		);
-	}
-	function renderMealListDinner(mealState){
-		return [{}].concat(mealState).map((item) =>
-			item.type === 'Dinner' ? 
-			<li key={item.mealId}>		
-				<p>{item.name}</p>
-				<p>{item.kcal} kcal</p>	
-				<p>{item.proteins} P</p>	
-				<p>{item.fats} F</p>	
-				<p>{item.carbs} C</p>	
-			</li>
-			:
-			''
+
+	function renderSumMealList(mealState,type){
+		let kcalSum = 0;
+		let proteinSum = 0;
+		let fatsSum = 0;
+		let carbsSum = 0;
+		mealState.forEach(element => {
+			if(element.type === type){
+				kcalSum += Number(element.kcal);
+				proteinSum += Number(element.proteins);
+				fatsSum += Number(element.fats);
+				carbsSum += Number(element.carbs);
+			}
+		});
+		return (
+			<ul>
+				<li>{kcalSum.toFixed(1)} kcal</li>
+				<li>{proteinSum.toFixed(1)} g</li>
+				<li>{fatsSum.toFixed(1)} g</li>
+				<li>{carbsSum.toFixed(1)} g</li>
+			</ul>
 		);
 	}
 
-	console.log(mealState);
-
-
-
+	function renderGeneralSum(mealState,type1){
+		let generalSum = 0;
+		mealState.forEach(element =>{
+			if(type1 === 'kcal')
+				generalSum += Number(element.kcal);
+			if(type1 === 'p')
+				generalSum += Number(element.proteins);
+			if(type1 === 'f')
+				generalSum += Number(element.fats);
+			if(type1 === 'c')
+				generalSum += Number(element.carbs);
+		});
+		return(
+			<p className='pInlineElement'>
+				<strong>{generalSum.toFixed(0)}</strong>
+			</p>
+		)
+	}
 
 	return (
 		<div className='home-view'>
 			{isLoading ? ('') : (
 			<div className='content'>	
 				<div className='home-container'>
-					<ul className='Breakfast-section'>
-						<h3 className='li-header-section'>Breakfast </h3>
+					<div className='Breakfast-section' role='button' onClick={()=> toggleTrueFalse()} >
+						<h3 className='li-header-section' >Breakfast </h3>
 						<NavLink to='/addproduct' className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
-						{!isLoading && renderMealListBreakfast(mealState)}
-					</ul>
-					<ul className='Snack1-section'>
+						
+						{renderSumMealList(mealState,'Breakfast')}
+						{isClickedBreakfast && !isLoading && renderMealList(mealState,'Breakfast')}
+					</div>
+					<div className='Snack1-section' role='button' onClick={()=> toggleTrueFalse1()}>
 						<h3 className='li-header-section'>Snack I</h3>
 						<NavLink to='/addproduct' className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
-						{!isLoading && renderMealListSnack1(mealState)}
-					</ul>
-					<ul className='Lunch-section'>
+						{ renderSumMealList(mealState,'Snack1')}
+						{isClickedSnack1 && !isLoading && renderMealList(mealState,'Snack1')}
+					</div>
+					<div className='Lunch-section' role='button' onClick={()=> toggleTrueFalse2()}>
 						<h3 className='li-header-section'>Lunch</h3>
 						<NavLink to='/addproduct' className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
-						{!isLoading && renderMealListLunch(mealState)}
-					</ul>
-					<ul className='Snack2-section'>
+						{ renderSumMealList(mealState,'Lunch')}
+						{isClickedLunch && !isLoading && renderMealList(mealState,'Lunch')}
+					</div>
+					<div className='Snack2-section' role='button' onClick={()=> toggleTrueFalse3()}>
 						<h3 className='li-header-section'>Snack II</h3>
 						<NavLink to='/addproduct' className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
-						{!isLoading && renderMealListSnack2(mealState)}
-					</ul>
-					<ul className='Dinner-section'>
+						{renderSumMealList(mealState,'Snack2')}
+						{isClickedSnack2  && !isLoading && renderMealList(mealState,'Snack2')}
+					</div>
+					<div className='Dinner-section' role='button' onClick={()=> toggleTrueFalse4()}>
 						<h3 className='li-header-section'>Dinner</h3>
 						<NavLink to='/addproduct' className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
-						{!isLoading && renderMealListDinner(mealState)}
+						{renderSumMealList(mealState,'Dinner')}
+						{isClickedDinner && !isLoading && renderMealList(mealState,'Dinner')}
 						
 					
-					</ul>
+					</div>
 				</div>
 
 
@@ -173,9 +172,7 @@ const Home = () => {
 							/>
 							<span>
 								<p className='pInlineElement'>Calories </p>
-								<p className='pInlineElement'>
-									<strong>{1760}</strong>
-								</p>
+								{renderGeneralSum(mealState,'kcal')}
 								{/* Rendered from database table Sum of table Meals for specific day */}
 								<p className='liMakroElementsAmount'>/ 3000 kcal</p>
 								{/* Rendered from db table Users */}
@@ -192,9 +189,7 @@ const Home = () => {
 							/>
 							<span>
 								<p className='pInlineElement'>Proteins </p>
-								<p className='pInlineElement'>
-									<strong>85.9</strong>
-								</p>
+								{renderGeneralSum(mealState,'p')}
 								{/* Rendered from database table Sum of table Meals for specific day */}
 								<p className='liMakroElementsAmount'>/ 154 g</p>
 								{/* Rendered from db table Users */}
@@ -211,9 +206,7 @@ const Home = () => {
 							/>
 							<span>
 								<p className='pInlineElement'>Fat </p>
-								<p className='pInlineElement'>
-									<strong>83</strong>
-								</p>
+								{renderGeneralSum(mealState,'f')}
 								{/* Rendered from database table Sum of table Meals for specific day */}
 								<p className='liMakroElementsAmount'>/ 83 g</p>
 								{/* Rendered from db table Users */}
@@ -230,9 +223,7 @@ const Home = () => {
 							/>
 							<span>
 								<p className='pInlineElement'>Carbs </p>
-								<p className='pInlineElement'>
-									<strong>155.2</strong>
-								</p>
+								{renderGeneralSum(mealState,'c')}
 								{/* Rendered from database table Sum of table Meals for specific day */}
 								<p className='liMakroElementsAmount'>/ 405 g</p>
 								{/* Rendered from db table Users */}

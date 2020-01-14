@@ -9,11 +9,14 @@ import Loading from '../../components/Loader/Loader';
 const NewProduct = () => {
 	const defaultState={
 		name: '',
-		company:'',
+		company:0,
 		kcal: '',
 		proteins: '',
 		fats: '',
-		carbs: ''
+		saturated: 0,
+		carbs: '',
+		sugars: 0,
+		salt: 0
 	};
 
 	const [state, setState] = useState(defaultState);
@@ -70,7 +73,7 @@ const NewProduct = () => {
 						id='company'
 						aria-describedby='companyHelp'
 						placeholder='Company'
-						value={state.company}
+						value={state.company === 0 ? '' : state.company}
 						onChange={onInputChange}
 					/>
 				</p>
@@ -119,10 +122,49 @@ const NewProduct = () => {
 					<input
 						className='input'
 						type='text'
+						id='saturated'
+						aria-describedby='saturatedHelp'
+						placeholder='Saturated'
+						value={state.saturated === 0 ? '' : state.saturated}
+						onChange={onInputChange}
+					/>
+				</p>
+			</div>
+			<div className='field'>
+				<p className='control'>
+					<input
+						className='input'
+						type='text'
 						id='carbs'
 						aria-describedby='carbsHelp'
 						placeholder='Carbs'
 						value={state.carbs}
+						onChange={onInputChange}
+					/>
+				</p>
+			</div>
+			<div className='field'>
+				<p className='control'>
+					<input
+						className='input'
+						type='text'
+						id='sugars'
+						aria-describedby='sugarsHelp'
+						placeholder='Sugars'
+						value={state.sugars === 0 ? '' : state.sugars}
+						onChange={onInputChange}
+					/>
+				</p>
+			</div>
+			<div className='field'>
+				<p className='control'>
+					<input
+						className='input'
+						type='text'
+						id='salt'
+						aria-describedby='saltHelp'
+						placeholder='Salt'
+						value={state.salt === 0 ? '' : state.salt}
 						onChange={onInputChange}
 					/>
 				</p>
