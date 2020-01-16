@@ -1,4 +1,5 @@
 .section{
+    margin-left: 1rem;
     .is-danger{
         border: 1px solid red;
         div{
@@ -7,5 +8,31 @@
     }
     .help{
         border:none;
+    }
+    .li-Login {
+        margin-top: 25px;
+    }
+    .button.is-success {
+        height: 3.0rem;
+        width: 4rem;      
+        position: relative;
+        top: 1rem;
+    }
+    i{
+        position: relative;
+        top: 1px;
+        border-style: solid;
+        padding: 1px;
+        border-color: white;
+        border-width: inherit;
+    }
+    .input {
+        position: relative;
+        background-color: transparent;
+        color: white;
+        padding-left: 10px;
+        margin-left: 5px;
+        height: 1.5rem;
+        width: 12rem;
     }
 }

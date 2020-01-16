@@ -86,34 +86,39 @@ const Login = () => {
 			<div className='container'>
 				<h1>Log in</h1>
 				<FormErrors formerrors={state.errors} />
-				
+				<h4 className="li-Login">Username or Email</h4>
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>
+							<span className='icon is-small is-left'>
+								<i className='fa fa-user icon' />
+							</span>
 							<input
 								className='input'
 								type='text'
 								id='username'
 								aria-describedby='usernameHelp'
-								placeholder='Enter username or email'
+								placeholder=''
 								value={state.username}
 								onChange={onInputChange}
 							/>
 						</p>
 					</div>
 					<div className='field'>
+					<h4 className="Roboczo_XD">Password</h4>
 						<p className='control has-icons-left'>
+							<span className='icon is-small is-left'>
+								<i className='fas fa-lock icon' />
+							</span>
 							<input
 								className='input'
 								type='password'
 								id='password'
-								placeholder='Password'
+								placeholder=''
 								value={state.password}
 								onChange={onInputChange}
 							/>
-							<span className='icon is-small is-left'>
-								<i className='fas fa-lock' />
-							</span>
+							
 						</p>
 					</div>
 					<div className='field'>
