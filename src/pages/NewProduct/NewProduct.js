@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState} from 'react';
 import './NewProduct.scss';
 import { useHistory } from 'react-router-dom';
@@ -6,7 +7,7 @@ import Loading from '../../components/Loader/Loader';
 
 
 
-const NewProduct = () => {
+const NewProduct = props => {
 	const defaultState={
 		name: '',
 		company:0,
@@ -22,6 +23,9 @@ const NewProduct = () => {
 	const [state, setState] = useState(defaultState);
 	const [isLoading, setIsLoading] = useState(false);
 	const history = useHistory();
+	const { match } = props;
+
+	const {type} = match.params;
 	
 	function createProduct(product){
 		return API.post('products','/products',{
@@ -33,8 +37,8 @@ const NewProduct = () => {
 		event.preventDefault();
 		setIsLoading(true);
 		try{
-			await createProduct(state);
-			history.push('/');
+			const returnData = await createProduct(state);
+			history.push(`/products/${type}/${returnData.productId}`);
 		} catch(e){
 			console.log(e);
 			setIsLoading(false);
@@ -46,7 +50,7 @@ const NewProduct = () => {
 	const onInputChange = event => {
 		setState({
 			...state,
-			[event.target.id]: event.target.value
+			[event.target.id]: event.target.value.replace(/,/g, '.')
 		});
 	};
 	  return (

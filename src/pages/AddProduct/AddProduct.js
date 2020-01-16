@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+
+/* eslint-disable no-undef */
 /* eslint-disable no-shadow */
 import React,{useState,useEffect} from 'react';
 import './AddProduct.scss';
@@ -8,12 +11,15 @@ import Loading from '../../components/Loader/Loader';
 import Product from '../Product/Product';
 
 
-const AddProduct = () => {
+const AddProduct = props => {
 	const [productsState,setProductsState] = useState([]);
 	const [newProductSate,setNewProductState] = useState([])
 	const [isLoading, setIsLoading] = useState(true);
 	const [search, setSearch] = useState('');
 	const [{user},dispatch] = useStateValue();
+	const { match } = props;
+
+	const {type} = match.params;
 
 	function loadProducts() {
 		return API.get('products', '/products');
@@ -48,11 +54,11 @@ const AddProduct = () => {
 			)
 			setNewProductState(filteredProducts);
 	},[productsState, search]);
-
+	
 	function renderProductList(newProductSate){
 		return [{}].concat(newProductSate).map((item) =>
 			item != null ?
-			<NavLink key={item.productId} to={`/products/${item.productId}`}>		
+			<NavLink key={item.productId} to={`/products/${type}/${item.productId}`}>		
 				<h3>{item.name}</h3>
 				<p>100 g</p>
 				<p>{item.kcal} kcal</p>		
@@ -71,7 +77,7 @@ const AddProduct = () => {
 			<ul>
 				{!isLoading && renderProductList(newProductSate)}
 			</ul>
-			<NavLink to='/newproduct'>
+			<NavLink to={`/newproduct/${type}`}>
 				<button type='button'><i className='fas fa-plus-circle'></i>Add the new product</button>
 			</NavLink>
 		</div>

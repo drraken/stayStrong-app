@@ -79,17 +79,17 @@ const AppContent = () => {
 					component={ChangePassword}
 					props={user}
 		        />
-				<AuthenticatedRoute path='/addproduct/'
+				<AuthenticatedRoute path='/addproduct/:type'
 					exact 
 					component={AddProduct}
 					props={user}
 		        />
-				<AuthenticatedRoute path='/newproduct/'
+				<AuthenticatedRoute path='/newproduct/:type'
 					exact 
 					component={NewProduct}
 					props={user}
 		        />
-				<AuthenticatedRoute path='/products/:id'
+				<AuthenticatedRoute path='/products/:type1/:id'
 					exact 
 					component={Product}
 					props={user}
