@@ -13,6 +13,7 @@ const Product = props => {
 
     const {type1} = match.params;
     const {id} = match.params;
+    const {day1} = match.params;
 
     const defaultState={
 		name: '',
@@ -29,8 +30,10 @@ const Product = props => {
 		kcal: '',
 		proteins: '',
 		fats: '',
-		carbs: ''
+        carbs: '',
+        day: day1
     }
+    
     const [state, setState] = useState(defaultState)
     const [isLoading,setIsLoading] = useState(true)
     const history = useHistory();

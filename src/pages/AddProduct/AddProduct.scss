@@ -1,19 +1,44 @@
 @import "./../../main.scss";
 
 .add-product-view{
-    .search-box{
-        border: 1px solid $white-darker-three;
-        margin-top: 10px;
-        padding: 10px 0px;
-        width: 94%;
-        text-align: center;
-        top:65px;
-        left:10px;
+    .background-overlay{
         position: fixed;
+        top:0;
+        width: 100%;
+        height: 200px;
         background-color: $home-body;
+        .header-day-meal{
+            position: fixed;
+            width: 100%;
+            height: 60px;
+            background-color: $black;
+            top:70px;
+            left: 0;
+            p{
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                &:nth-child(1){
+                    font-size: 25px;
+                    font-weight: 700;
+                }
+            }
+        }
+        .search-box{
+            border: 1px solid $white-darker-three;
+            margin-top: 10px;
+            padding: 10px 0px;
+            width: 94%;
+            text-align: center;
+            top:130px;
+            left:10px;
+            position: fixed;
+            background-color: $home-body;
+        }
     }
+   
     ul{
-       margin-top: 50px;
+       margin-top: 125px;
         a{
             &:nth-child(1){
                 display: none;

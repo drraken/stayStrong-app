@@ -26,6 +26,7 @@ const NewProduct = props => {
 	const { match } = props;
 
 	const {type} = match.params;
+	const{day} = match.params;
 	
 	function createProduct(product){
 		return API.post('products','/products',{
@@ -38,14 +39,12 @@ const NewProduct = props => {
 		setIsLoading(true);
 		try{
 			const returnData = await createProduct(state);
-			history.push(`/products/${type}/${returnData.productId}`);
+			history.push(`/products/${type}/${day}/${returnData.productId}`);
 		} catch(e){
 			console.log(e);
 			setIsLoading(false);
 		}
 	}
-
-	
 
 	const onInputChange = event => {
 		setState({
