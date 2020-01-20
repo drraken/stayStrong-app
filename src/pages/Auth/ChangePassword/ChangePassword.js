@@ -3,6 +3,7 @@ import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
 import FormErrors from '../../../components/Validation/FormErrors.js';
 import Validate from '../../../components/Validation/FormValidation.js';
+import './ChangePassword.scss';
 
 const ChangePassword = ()=> {
   const history = useHistory();
@@ -93,7 +94,7 @@ const ChangePassword = ()=> {
                   onChange={onInputChange}
                 />
                 <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
+                  <i className='fas fa-lock icon'></i>
                 </span>
               </p>
             </div>
@@ -108,7 +109,7 @@ const ChangePassword = ()=> {
                   onChange={onInputChange}
                 />
                 <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
+                  <i className='fas fa-lock icon'></i>
                 </span>
               </p>
             </div>
@@ -123,7 +124,7 @@ const ChangePassword = ()=> {
                   onChange={onInputChange}
                 />
                 <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
+                  <i className='fas fa-lock icon'></i>
                 </span>
               </p>
             </div>
@@ -135,7 +136,7 @@ const ChangePassword = ()=> {
             <div className='field'>
               <p className='control'>
                 <button className='button is-success' type='submit'>
-                  Change password
+                  Submit
                 </button>
               </p>
             </div>

@@ -1,9 +1,83 @@
+@import "./../../main.scss";
 form {
-    input {
-        color: black;
+    .header-newp {
+        width: 100%;
+        height: 50px;
+        background-color: $black-lighter-one;
+    }
+    .fas.fa-arrow-left {
+        float: left;
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+        //height: 60px !important;
+    }
+    .p-header {
+        position: absolute;
+        margin-top: 0.7rem;
+        margin-left: 120px;
     }
     .button {
-        color: black;
-        background-color: white;
+        color: $white-darker-three;
+        background-color: transparent;
+        border-style: none;
+        float: right;
+        margin-top: 0.8rem;
+        margin-right: 0.5rem;   
+         
+    }
+    .input-name {
+        color: white;
+        margin-top: 10px;
+        padding-left: 10px;
+        float: right;
+        background-color: transparent;
+        border-width: medium;
+        //width: 10px;
+    }
+    .input-brand {
+        color: white;
+        margin-top: 7px;
+        padding-left: 10px;
+        float: right;
+        background-color: transparent;
+        border-width: medium;
+        //width: 10px;
+    }
+    .input1 {
+        color: white;
+        margin-top: 7px;
+        margin-right: 50px;
+        padding-left: 10px;
+        float: right;
+        background-color: transparent;
+        border-width: medium;
+        width: 80px;
+    }
+    .li-newp-name {       
+        text-align: left;
+        clear: both;
+        float:left;
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+    .li-newp {       
+        text-align: left;
+        clear: both;
+        float:left;
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+    .li-newp-s {
+        text-align: left;
+        clear: both;
+        float:left;
+        margin-left: 20px;
+        margin-right: 15px;
+    }
+    .units {
+        clear: both;
+        float: right;
+        position: relative;
+        margin-top: -32px;
     }
 }
