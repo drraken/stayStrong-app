@@ -79,7 +79,7 @@ const ChangePassword = ()=> {
     return (
       <section className='section auth'>
         <div className='container'>
-          <h1>Change Password</h1>
+          <h2>Change Password</h2>
           <FormErrors formerrors={state.errors} />
 
           <form onSubmit={handleSubmit}>

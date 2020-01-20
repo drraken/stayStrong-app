@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify';
 import FormErrors from '../../../components/Validation/FormErrors.js';
 import Validate from '../../../components/Validation/FormValidation.js';
 import { useStateValue } from '../../../stateProvider.js';
-
+import './ForgotPassword.scss';
 
 const ForgotPassword = ()=> {
   const history = useHistory();
@@ -68,7 +68,7 @@ const ForgotPassword = ()=> {
       <section className='section auth'>
         <div className='container'>
           <h1>Forgot your password?</h1>
-          <p>
+          <p className="info">
             Please enter the email address associated with your account and we'll
             email you a password reset link.
           </p>

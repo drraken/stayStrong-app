@@ -111,21 +111,6 @@ const NewProduct = props => {
 				</p>
 			</div>
 			<div className='field'>
-				<h4 className="li-newp">Proteins*</h4>
-				<p className='control'>
-					<input
-						className='input1'
-						type='text'
-						id='proteins'
-						aria-describedby='proteinsHelp'
-						placeholder=''
-						value={state.proteins}
-						onChange={onInputChange}
-					/>
-					<h4 className="units">g</h4>
-				</p>
-			</div>
-			<div className='field'>
 				<h4 className="li-newp">Fat*</h4>
 				<p className='control'>
 					<input
@@ -185,6 +170,21 @@ const NewProduct = props => {
 					<h4 className="units">g</h4>
 				</p>
 			</div>
+			<div className='field'>
+				<h4 className="li-newp">Proteins*</h4>
+				<p className='control'>
+					<input
+						className='input1'
+						type='text'
+						id='proteins'
+						aria-describedby='proteinsHelp'
+						placeholder=''
+						value={state.proteins}
+						onChange={onInputChange}
+					/>
+					<h4 className="units">g</h4>
+				</p>
+			</div>		
 			<div className='field'>
 				<h4 className="li-newp">Salt</h4>
 				<p className='control'>

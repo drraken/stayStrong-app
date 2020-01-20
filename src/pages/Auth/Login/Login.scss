@@ -1,5 +1,5 @@
+@import "./../../../main.scss";
 .section{
-    margin-left: 1rem;
     .is-danger{
         border: 1px solid red;
         div{
@@ -9,24 +9,21 @@
     .help{
         border:none;
     }
-    .li-Login {
-        margin-top: 25px;
-    }
     .button.is-success {
         height: 3.0rem;
         width: 4rem;
     }
-    i{
-        border-style: solid;
-        border-color: white;
-        border-width: inherit;
+    .icon{
+        margin-right: 0.3rem;
     }
     .input {
         background-color: transparent;
         color: white;
-        padding-left: 10px;
-        margin-left: 5px;
+        padding-left: 0.2rem;
         height: 1.5rem;
         width: 12rem;
+    }
+    span {
+        color: $white-darker-three;
     }
 }
