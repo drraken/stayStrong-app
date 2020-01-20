@@ -7,39 +7,72 @@
 	flex-direction: column;
 	height: 100%;
 	padding-top: 1rem;
-	//respond to large dodac
 	.content{
 		width: 100%;
 	}
-	div{
-		.li-header-section{
-			display: inline-block;
-		}
-		a{
-			float: right;
-			padding: 5px;
-			i{
-				color: white;
-				font-size: 25px;
+	.home-header{
+		display: flex;
+		justify-content: space-around;
+		margin-bottom: 20px;
+	}
+	.home-container{
+		width: 100%;
+		div{
+			span{
+				font-size: 20px;
+				font-weight: 700;
+				padding: 5px 200px 5px 0px;
 			}
-		}
-		li{
-			
-			display: inline;
-			padding: 4px;
-		
+			.li-header-section{
+				display: inline-block;
+			}
+			a{
+				float: right;
+				padding: 5px;
+				i{
+					color: white;
+					font-size: 25px;
+				}
+			}
+			#mealCardMakroDetails{
+				background-color: $white-darker-two;
+				margin-bottom: 5px;
+				padding: 3px;
+				i{
+					float: right;
+					padding: 6px;
+				}
+			}
+			#mealCardTypeSumDetails{
+				margin-bottom: 5px;
+			}
+			li{
+				
+				display: block;
+				padding: 4px;
+			}
+			.mealItemMakroDetails{
+				display: inline;
+			}
+			.mealTypeSumDetails{
+				display: inline;
+			} 
 		}
 	}
 	button{
 		color:black;
 	}
 	.FooterHome {
-		margin-left: -16px;
+		//margin-left: -16px;
 		position: fixed;
 		bottom: 0;
 		width: 100%;
 		background: $black;
 		height: 57px;
+		left:0;
+		@include respond-to(large) {
+				
+		}
 		ul {
 			display: flex;
 			width: 100%;
@@ -47,6 +80,7 @@
 			padding: 0;
 			justify-content: space-around;
 			list-style: none;
+			
 			li {
 				width: 100%;
 				height: 100%;
@@ -56,28 +90,25 @@
 				&:nth-child(1) {
 					#colorLineOverlay {
 						background-color: #1eb71b;
-						width: 3%;
+						
 					}
 				}
 				&:nth-child(2) {
 					#colorLineOverlay {
 						background-color: #1c6ed3;
-						width: 2%;
 					}
 				}
 				&:nth-child(3) {
 					#colorLineOverlay {
 						background-color: #cacc13;
-						width: 1%;
 					}
 				}
 				&:nth-child(4) {
 					#colorLineOverlay {
 						background-color: #7113ac;
-						width: 1%;
 					}
 				}
-				.proggresiveLine {
+				.proggresiveLine { 
 					width: 90%;
 					height: 4px;
 					border-radius: 10px;
@@ -85,12 +116,13 @@
 					margin: 2px;
 				}
 				#parentLineElement {
-					position: relative;
+					position: static;
+					
 				}
 				#colorLineOverlay {
-					position: absolute;
-					top: 0;
-					margin-top: 12px;
+					position: relative;
+					z-index: 100;
+					margin-top: -6px;
 				}
 				span {
 					padding-top: 5px;

@@ -8,7 +8,13 @@ import { useHistory } from 'react-router-dom';
 import Loading from '../../components/Loader/Loader';
 
 
-const Product = (props) => {
+const Product = props => {
+    const { match } = props;
+
+    const {type1} = match.params;
+    const {id} = match.params;
+    const {day1} = match.params;
+
     const defaultState={
 		name: '',
 		company:'',
@@ -19,22 +25,25 @@ const Product = (props) => {
     };
     const defaultMealState={
 		amount: '',
-        type: '',
+        type: type1,
         name: '',
 		kcal: '',
 		proteins: '',
 		fats: '',
-		carbs: ''
+        carbs: '',
+        day: day1
     }
+    
     const [state, setState] = useState(defaultState)
     const [isLoading,setIsLoading] = useState(true)
     const history = useHistory();
+    
 
     const[mealState,setMealState] = useState(defaultMealState)
     
     useEffect(()=>{
         function loadProduct() {
-            return API.get('products', `/products/${props.match.params.id}`);
+            return API.get('products', `/products/${id}`);
         }
       
         async function onLoad() {
@@ -48,7 +57,7 @@ const Product = (props) => {
             } 
         }
         onLoad();   
-    },[props.match.params.id]);
+    },[id]);
     useEffect(()=>{
         setMealState({
             ...mealState,
@@ -60,7 +69,7 @@ const Product = (props) => {
         });
     },[mealState.amount])
     function createMeal(meal){
-		return API.post('meals',`/meals/${props.match.params.id}`,{ 
+		return API.post('meals',`/meals/${id}`,{ 
 			body: meal
 		});
 	}
@@ -83,21 +92,20 @@ const Product = (props) => {
 			[event.target.id]: event.target.value
 		});
 	};
-    console.log(mealState);
 	return (
         isLoading ? <Loading/> :
 		<div className='product-view'>
 			<h2>{state.name}</h2>
 
             <form onSubmit={handleSubmit}>
-                <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
+                {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
                     <option>Select meal</option>
                     <option value="Breakfast">Breakfast</option>
                     <option value="Snack1">Snack I</option>
                     <option value="Lunch">Lunch</option>
                     <option value="Snack2">Snack II</option>
                     <option value="Dinner">Dinner</option>
-                </select>
+                </select> */}
                 <div className='field'>
                     <p className='control'>
                         <input

@@ -25,6 +25,11 @@ Amplify.configure({
 				name: 'meals',
 				endpoint: config.apiGateway.URL,
 				region: config.apiGateway.REGION
+			},
+			{
+				name: 'usersParameters',
+				endpoint: config.apiGateway.URL,
+				region: config.apiGateway.REGION
 			}
 		]
 	}
