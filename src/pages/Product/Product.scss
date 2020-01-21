@@ -1,3 +1,4 @@
+@import "./../../main.scss";
 .product-view{
     form{
         .select-type{
@@ -7,5 +8,62 @@
                 color:black;              
             }
         }
+        .roboczo {
+            background-color: $black;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        p {
+            
+            color: $white-darker-three;
+            font-weight: bold;
+        }
+        .roboczo1 {
+            margin-top: 0.5rem;
+            background-color: $black;
+            height: 50px;
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input {
+            color: black;
+            margin-left: 1rem;
+            padding-left: 0.2rem;
+            border-style: none;
+            width: 5rem;
+        }
+        select {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            //margin-right: 40px;
+            width: 60px;
+        }
+        select option {
+            color: black;
+        }
+        .button.is-success {
+            background-color: transparent;
+            border-style: none;
+            width: 35px;
+            height: 35px;
+            margin-right: 0.5rem;
+        }
     }
+    .details {
+        display: flex;
+        justify-content: center;
+    }
+    }
+    .button-details {
+        color: $white-darker-three;
+        background-color: transparent;
+        border-style: none;       
 }
