@@ -9,7 +9,7 @@ import './Login.scss';
 
 const Login = () => {
 	const history = useHistory();
-	const [{ user }, dispatch] = useStateValue();
+	const [{ user,location }, dispatch] = useStateValue();
 	const defaultState = {
 		username: '',
 		password: '',
