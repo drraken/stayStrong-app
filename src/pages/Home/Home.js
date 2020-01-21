@@ -6,19 +6,14 @@ import { API } from 'aws-amplify';
 import { NavLink } from 'react-router-dom';
 import { useStateValue } from '../../stateProvider.js';
 import Loader from '../../components/Loader/Loader';
+import Header from '../../components/Header/Header'
 
 
 
 const Home = () => {
 	const [{user},dispatch] = useStateValue();
 
-	const defaultParameterState={
-		kcalGoal: '',
-		proteinGoal: '',
-		fatGoal: '',
-		carbGoal: '',
-	
-	};
+
 	const [mealState,setMealState] = useState([]);
 	const [parameterState,setParameterState] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -82,12 +77,10 @@ const Home = () => {
 			} catch (e) {
 			  console.log(e);
 			}
-			// setIsLoading(false);
 		  }
 		
 		onLoad();
 	},[deleteMeal, user.isAuthenticated])
-	
 	function dateTimeNow(){
 		const now = new Date()  
 		const daysSinceEpoch = Math.floor(now.getTime() / 86400000)  
@@ -100,7 +93,6 @@ const Home = () => {
 		setIsClickedLunch(false);
 		setIsClickedSnack2(false);
 		setIsClickedDinner(false);
-		console.log(dateView.toString());
 	},[dateView])
 
 	function renderMealList(mealState,type){
@@ -202,21 +194,29 @@ const Home = () => {
 		return lineProggresiveStyle;
 	}
 	return (
+		
 		isLoading ? <Loader/> :
 		<div className='home-view'>
+			{/* <Header /> */}
 			<div className='content'>	
 
 				<div className='home-header'>
 					<span><i className="fas fa-chevron-left"></i></span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow()-1)}>Yesterday</span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow())}>Today</span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow()+1)}>Tomorrow</span>
+					<span role='button' onClick={()=> setDateView(dateTimeNow()-1)}
+					className={dateView == (dateTimeNow()-1) ? 'currentSelectedDay ' : ''}
+					>Yesterday</span>
+					<span role='button' onClick={()=> setDateView(dateTimeNow())}
+					className={dateView == dateTimeNow() ? 'currentSelectedDay ' : ''}
+					>Today</span>
+					<span role='button' onClick={()=> setDateView(dateTimeNow()+1)}
+					className={dateView == (dateTimeNow()+1) ? 'currentSelectedDay ' : ''}
+					>Tomorrow</span>
 					<span><i className="fas fa-chevron-right"></i></span>
 				</div>
 
 
 				<div className='home-container'>
-					<div className='Breakfast-section'  >
+					<div className='Breakfast-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse()} >Breakfast </span>
 						<NavLink to={`/addproduct/breakfast/${dateView.toString()}`} className='li-header-section'>
 							<i className='fas fa-plus-circle icon-2x'></i>
@@ -279,7 +279,6 @@ const Home = () => {
 								<p className='pInlineElement'>Calories </p>
 								{renderGeneralSum(mealState,'kcal')}
 								<p className='liMakroElementsAmount'>/ {parameterState.kcalGoal} kcal</p>
-								{/* Rendered from db table Users */}
 							</span>
 						</li>
 						<li>
@@ -296,7 +295,6 @@ const Home = () => {
 								<p className='pInlineElement'>Proteins </p>
 								{renderGeneralSum(mealState,'p')}
 								<p className='liMakroElementsAmount'>/ {parameterState.proteinGoal} g</p>
-								{/* Rendered from db table Users */}
 							</span>
 						</li>
 						<li>
@@ -313,7 +311,6 @@ const Home = () => {
 								<p className='pInlineElement'>Fat </p>
 								{renderGeneralSum(mealState,'f')}
 								<p className='liMakroElementsAmount'>/ {parameterState.fatGoal} g</p>
-								{/* Rendered from db table Users */}
 							</span>
 						</li>
 						<li>
@@ -330,7 +327,6 @@ const Home = () => {
 								<p className='pInlineElement'>Carbs </p>
 								{renderGeneralSum(mealState,'c')}
 								<p className='liMakroElementsAmount'>/ {parameterState.carbGoal} g</p>
-								{/* Rendered from db table Users */}
 							</span>
 						</li>
 					</ul>

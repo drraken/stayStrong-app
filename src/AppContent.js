@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound/NotFound';
 import AddProduct from './pages/AddProduct/AddProduct.js';
 import NewProduct from './pages/NewProduct/NewProduct.js';
 import Product from './pages/Product/Product.js';
+import AddEditParameter from './pages/AddEditParameter/AddEditParameter';
 
 import { useStateValue } from './stateProvider.js';
 
@@ -26,7 +27,6 @@ import { useStateValue } from './stateProvider.js';
 
 const AppContent = () => {
 	const [{ user }, dispatch] = useStateValue();
-
 	return (
 		<Router>
 			<Header />
@@ -92,6 +92,11 @@ const AppContent = () => {
 				<AuthenticatedRoute path='/products/:type1/:day1/:id'
 					exact 
 					component={Product}
+					props={user}
+		        />
+				<AuthenticatedRoute path='/addEditParameters'
+					exact 
+					component={AddEditParameter}
 					props={user}
 		        />
 				{/* <Route component={NotFound}/> */}

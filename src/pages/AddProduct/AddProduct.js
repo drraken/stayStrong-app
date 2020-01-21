@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 import { API } from 'aws-amplify';
 import { useStateValue } from '../../stateProvider.js';
 import Loading from '../../components/Loader/Loader';
-import Product from '../Product/Product';
 
 
 const AddProduct = props => {

@@ -45,14 +45,34 @@
 		}
 	}
 
-	// button {
-	// 	position: absolute;
-	// 	right: 1rem;
-	// 	top: 5rem;
-	// 	appearance: none;
-	// 	background: $primary;
-	// 	border: none;
-	// 	padding: 0.5rem 1rem;
-	// 	border-radius: 0.5rem;
-	// }
+	.button-redirect {
+		margin-top: 50px;
+		.top-button{	
+			display: block;
+			text-align: center;
+			margin: auto;
+			width: 250px;
+			padding: 10px;
+			background-color: $white;
+			margin-bottom: 15px;
+			@include respond-to(large) {
+				margin: 0;
+				margin-bottom: 15px;
+			}
+			
+
+			button{
+				background: none;
+				border: none;
+				color:$black;
+			}
+			a{
+				text-decoration: none;
+				border:none;
+				color: $black;
+			}
+		}
+		
+		
+	}
 }
