@@ -1,0 +1,10 @@
+@import "./../../../main.scss";
+.welcome-view {
+    h2 {
+        margin-top: 1rem;
+    }
+    p {
+        color: $white-darker-three;
+        font-weight: bold;
+    }
+}

@@ -124,6 +124,9 @@ const Register = () => {
 								value={state.password}
 								onChange={onInputChange}
 							/>
+							<span className='icon is-small is-left'>
+								<i className='fas fa-lock icon' />
+							</span>
 						</p>
 					</div>
 					<div className='field'>
@@ -136,6 +139,9 @@ const Register = () => {
 								value={state.confirmpassword}
 								onChange={onInputChange}
 							/>
+							<span className='icon is-small is-left'>
+								<i className='fas fa-lock icon' />
+							</span>
 						</p>
 					</div>
 					<div className='field'>
@@ -157,7 +163,7 @@ const Register = () => {
 					</div>
 					<div className='field'>
 						<button className='button is-success' type='submit'>
-							Register
+							Submit
 						</button>
 					</div>
 				</form>
