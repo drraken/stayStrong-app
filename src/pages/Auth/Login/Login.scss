@@ -1,3 +1,4 @@
+@import "./../../../main.scss";
 .section{
     .is-danger{
         border: 1px solid red;
@@ -7,5 +8,22 @@
     }
     .help{
         border:none;
+    }
+    .button.is-success {
+        height: 3.0rem;
+        width: 4rem;
+    }
+    .icon{
+        margin-right: 0.3rem;
+    }
+    .input {
+        background-color: transparent;
+        color: white;
+        padding-left: 0.2rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+    span {
+        color: $white-darker-three;
     }
 }

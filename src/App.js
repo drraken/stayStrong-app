@@ -8,22 +8,7 @@ const App = () => {
 	const initialState = {
 		app: {
 			language: 'en',
-			theme: 'black',
-			location:
-				// eslint-disable-next-line no-nested-ternary
-				window.location.pathname.replace('/', '').length > 0
-					? window.location.pathname.replace('/', '').indexOf('/') ===
-					  -1
-						? window.location.pathname.replace('/', '')
-						: window.location.pathname
-								.replace('/', '')
-								.substring(
-									0,
-									window.location.pathname
-										.replace('/', '')
-										.indexOf('/')
-								)
-					: 'home'
+			theme: 'black'	
 		},
 		user: {
 			isAuthenticated: false,
@@ -32,7 +17,6 @@ const App = () => {
 		},
 		users: []
 	};
-
 	const [sessionState, setSessionState] = useState(initialState);
 	useEffect(() => {
 		function checkCurrentSession() {

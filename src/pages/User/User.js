@@ -8,15 +8,10 @@ import Loading from '../../components/Loader/Loader';
 
 
 const User = () => {
-	const defaultState={
-		kcalGoal: '',
-		proteinGoal: '',
-		fatGoal: '',
-		carbGoal:''
-	};
+	
 
 	const [{ user }, dispatch] = useStateValue();
-	const[state,setState] = useState(defaultState);
+	
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleLogOut = async event => {
@@ -33,39 +28,27 @@ const User = () => {
 		}
 	};
 
-	function createParameter(parameter){
-		return API.post('usersParameters','/usersParameters',{
-			body: parameter
-		});
-	}
-	async function handleSubmit(event) {
-		event.preventDefault();
-		setIsLoading(true);
-		try{
-			await createParameter(state);
-		} catch(e){
-			console.log(e);
-			setIsLoading(false);
-		}
-	}
-	const onInputChange = event => {
-		setState({
-			...state,
-			[event.target.id]: event.target.value
-		});
-	};
-	console.log(state);
+	
+
 	return (
+		isLoading ? <Loading/> :
 		<div className='user-view'>
 			<div className='userprofile'>
 				<div className='user-section'>
-					<div className='user-icon'>{user.userName.slice(0, 1)}</div>
+					<div className='user-icon'>{user.userName.charAt(0).toUpperCase()}</div>
 					<div className='user-details'>
 						<h2>{`${user.userName}`}</h2>
 					</div>
+					
+				</div>
+			</div>
+			<ul className='button-redirect'>
+				<li className='top-button'>
 					<button type='button' onClick={handleLogOut}>
-						Log out
+							Log out
 					</button>
+				</li>
+				<li className='top-button'>
 					<NavLink
 						to='/changepassword'
 						onClick={() => {
@@ -75,76 +58,23 @@ const User = () => {
 							});
 						}}
 					>
-						<span>
-							Change Password
-						</span>
+					Change password	
 					</NavLink>
-				</div>
-			</div>
-			<div className='user-parameter'>
-				<form onSubmit={handleSubmit}>
-				
-					<div className='field'>
-						<p className='control'>
-							<input
-								className='input'
-								type='text'
-								id='kcalGoal'
-								aria-describedby='kcalGoalHelp'
-								placeholder='kcal'
-								value={state.kcalGoal}
-								onChange={onInputChange}
-							/>
-						</p>
-					</div>
-					<div className='field'>
-						<p className='control'>
-							<input
-								className='input'
-								type='text'
-								id='proteinGoal'
-								aria-describedby='protienGoalHelp'
-								placeholder='protein'
-								value={state.proteinGoal}
-								onChange={onInputChange}
-							/>
-						</p>
-					</div>
-					<div className='field'>
-						<p className='control'>
-							<input
-								className='input'
-								type='text'
-								id='fatGoal'
-								aria-describedby='fatGoalHelp'
-								placeholder='fat'
-								value={state.fatGoal}
-								onChange={onInputChange}
-							/>
-						</p>
-					</div>
-					<div className='field'>
-						<p className='control'>
-							<input
-								className='input'
-								type='text'
-								id='carbGoal'
-								aria-describedby='carbGoalHelp'
-								placeholder='carb'
-								value={state.carbGoal}
-								onChange={onInputChange}
-							/>
-						</p>
-					</div>
-					<div className='field'>
-						<p className='control'>
-							<button className='button is-success' type='submit' >
-								Submit
-							</button>
-						</p>
-					</div>
-            	</form>
-			</div>
+				</li>
+				<li className='top-button'>
+					<NavLink
+						to='/addEditParameters'
+						onClick={() => {
+							dispatch({
+								type: 'location',
+								newLocation: 'addparameter'
+							});
+						}}
+					>
+					Add/Edit makro goals	
+					</NavLink>
+				</li>
+			</ul>
 		</div>
 	);
 };

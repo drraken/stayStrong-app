@@ -9,7 +9,7 @@ import './Login.scss';
 
 const Login = () => {
 	const history = useHistory();
-	const [{ user }, dispatch] = useStateValue();
+	const [{ user,location }, dispatch] = useStateValue();
 	const defaultState = {
 		username: '',
 		password: '',
@@ -86,16 +86,18 @@ const Login = () => {
 			<div className='container'>
 				<h1>Log in</h1>
 				<FormErrors formerrors={state.errors} />
-				
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>
+							<span className='icon is-small is-left'>
+								<i className='fa fa-user icon' />
+							</span>
 							<input
 								className='input'
 								type='text'
 								id='username'
 								aria-describedby='usernameHelp'
-								placeholder='Enter username or email'
+								placeholder='Email or username'
 								value={state.username}
 								onChange={onInputChange}
 							/>
@@ -103,6 +105,9 @@ const Login = () => {
 					</div>
 					<div className='field'>
 						<p className='control has-icons-left'>
+							<span className='icon is-small is-left'>
+								<i className='fas fa-lock icon' />
+							</span>
 							<input
 								className='input'
 								type='password'
@@ -110,10 +115,7 @@ const Login = () => {
 								placeholder='Password'
 								value={state.password}
 								onChange={onInputChange}
-							/>
-							<span className='icon is-small is-left'>
-								<i className='fas fa-lock' />
-							</span>
+							/>						
 						</p>
 					</div>
 					<div className='field'>
@@ -127,7 +129,7 @@ const Login = () => {
 									});
 								}}
 							>
-								<span>Forgot password? Click here.</span>
+								<span>Forgot password?</span>
 							</NavLink>
 						</p>
 					</div>
@@ -142,7 +144,7 @@ const Login = () => {
 									});
 								}}
 							>
-								<span>No account yet? Click here.</span>
+								<span>No account yet?</span>
 							</NavLink>
 						</p>
 					</div>

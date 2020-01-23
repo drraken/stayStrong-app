@@ -98,14 +98,6 @@ const Product = props => {
 			<h2>{state.name}</h2>
 
             <form onSubmit={handleSubmit}>
-                {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
-                    <option>Select meal</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Snack1">Snack I</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Snack2">Snack II</option>
-                    <option value="Dinner">Dinner</option>
-                </select> */}
                 <div className='field'>
                     <p className='control'>
                         <input

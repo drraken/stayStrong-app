@@ -14,6 +14,11 @@
 		display: flex;
 		justify-content: space-around;
 		margin-bottom: 20px;
+		.currentSelectedDay{
+			padding-bottom: 7px;
+			border-bottom: 2px solid white;
+			font-weight: 700;
+		}
 	}
 	.home-container{
 		width: 100%;
