@@ -3,7 +3,7 @@ import React from 'react';
 import './Welcome.scss';
 
 const Welcome = () => {
-
+	console.log('dupa');
 	return (
 		<div className='welcome-view'>
 			<h2>Hello!</h2>
