@@ -30,7 +30,8 @@ main {
 	max-width: 640px;
 	margin: 0 auto;
 	@include respond-to(large) {
-		padding-left: 215px;
+		padding-left: 100px;
+		padding-right: 100px;
 		max-width: 1024px;
 	}
 }

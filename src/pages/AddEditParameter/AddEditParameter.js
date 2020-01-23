@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { API } from 'aws-amplify';
+import { useHistory } from 'react-router-dom';
 import './AddEditParameter.scss';
+import { useStateValue } from '../../stateProvider.js';
+import Loader from '../../components/Loader/Loader';
 
 const AddEditParameter = () => {
     const defaultState={
@@ -10,41 +13,76 @@ const AddEditParameter = () => {
 		fatGoal: '',
 		carbGoal:''
     };
-    const [isLoading, setIsLoading] = useState(false);
-    const[state,setState] = useState(defaultState);
+	const [isLoading, setIsLoading] = useState(true);
+	const [{user},dispatch] = useStateValue();
+	const[state,setState] = useState(defaultState);
+	const [id,setId] = useState('');
+	const history = useHistory();
 
-    function getParameter(parameter){
-        return API.get('usersParameters','/usersParameters',{
-			body: parameter
-		});
+    function getParameter(){
+        return API.get('usersParameters','/usersParameters');
     }
-    function createParameter(parameter){
+    function createParameter(parameterBody){
 		return API.post('usersParameters','/usersParameters',{
-			body: parameter
+			body: parameterBody
 		});
 	}
+	function updateParameter(parameterBody){
+		return API.put('usersParameters',`/usersParameters/${id}`,{
+			body: parameterBody
+		});
+	}
+	useEffect(()=>{
+		async function onLoad() {
+			if (!user.isAuthenticated) {
+			  return;
+			}
+			try {
+			  const param = await getParameter();
+			  param.forEach(element => {
+				setId(element.parameterId);
+			});
+			} catch (e) {
+			  console.log(e);
+			  setIsLoading(false);
+			}
+			setIsLoading(false);
+		  }
+		
+		onLoad();
+	},[])
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
 		try{
-			await createParameter(state);
+			if(id === ''){
+				await createParameter(state);
+			} else{
+				await updateParameter(state);
+			}
+				
 		} catch(e){
 			console.log(e);
 			setIsLoading(false);
 		}
+		history.push('/');
 	}
 	const onInputChange = event => {
 		setState({
 			...state,
 			[event.target.id]: event.target.value
 		});
-    };
-    
+	};
+	console.log(id);
 	return (
+		isLoading ? <Loader/> :
 		<div className='AddEditParameter-view'>
+			{id === '' ?
             <h2>Add your makro goals</h2>
+			: <h2>Edit your makro goals</h2>}
+
             <div className='user-parameter'>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} >
 				
 					<div className='field'>
 						<p className='control'>
