@@ -90,6 +90,9 @@ const Register = () => {
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>
+							<span className='icon register'>
+								<i className='fa fa-user icon' />
+							</span>
 							<input
 								className='input'
 								type='text'
@@ -103,6 +106,9 @@ const Register = () => {
 					</div>
 					<div className='field'>
 						<p className='control has-icons-left has-icons-right'>
+							<span className='icon register'>
+                  				<i className='fas fa-envelope'></i>
+                			</span>
 							<input
 								className='input'
 								type='email'
@@ -116,6 +122,9 @@ const Register = () => {
 					</div>
 					<div className='field'>
 						<p className='control has-icons-left'>
+							<span className='icon register'>
+								<i className='fas fa-lock icon' />
+							</span>
 							<input
 								className='input'
 								type='password'
@@ -124,13 +133,13 @@ const Register = () => {
 								value={state.password}
 								onChange={onInputChange}
 							/>
-							<span className='icon is-small is-left'>
-								<i className='fas fa-lock icon' />
-							</span>
 						</p>
 					</div>
 					<div className='field'>
 						<p className='control has-icons-left'>
+							<span className='icon register'>
+								<i className='fas fa-lock icon' />
+							</span>
 							<input
 								className='input'
 								type='password'
@@ -138,10 +147,7 @@ const Register = () => {
 								placeholder='Confirm password'
 								value={state.confirmpassword}
 								onChange={onInputChange}
-							/>
-							<span className='icon is-small is-left'>
-								<i className='fas fa-lock icon' />
-							</span>
+							/>	
 						</p>
 					</div>
 					<div className='field'>
@@ -156,7 +162,7 @@ const Register = () => {
 								}}
 							>
 								<span>
-									Have an account already? Click here.
+									Have an account already?
 								</span>
 							</NavLink>
 						</p>

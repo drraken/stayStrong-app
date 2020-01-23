@@ -1,18 +1,19 @@
 @import "./../../main.scss";
 form {
     .header-newp {
-        width: 100%;
+        width: 110%;
+        margin-left: -1rem;
         height: 3rem;
         background-color: $black;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
-        .fas.fa-arrow-left {
+        .p-header {
             margin-left: 0.5rem;
-            color: white;
         }
         button {
+            margin-right: 0.5rem;
             color: $white-darker-three;
             background-color: transparent;
             border-style: none;            
@@ -68,4 +69,9 @@ form {
         //position: relative;
         margin-top: -2rem;
     }
+    
+}
+.pinfo {
+    float: right;
+    font-size: 80%;
 }

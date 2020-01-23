@@ -14,15 +14,19 @@
         width: 4rem;
         border-style: none;
     }
-    .icon{
-        margin-right: 0.3rem;
-    }
     .input {
         background-color: transparent;
-        color: white;
+        //color: white;
         padding-left: 0.2rem;
         height: 1.5rem;
         width: 12rem;
+        border-style: none;
+    }
+    .icon-login-user {
+        margin-right: 0.3rem;
+    }
+    .icon-login-lock {
+        margin-right: 0.18rem;
     }
     span {
         color: $white-darker-three;

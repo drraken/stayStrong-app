@@ -91,12 +91,15 @@ const Product = props => {
 			...mealState,
 			[event.target.id]: event.target.value
 		});
-	};
+    };
 	return (
         isLoading ? <Loading/> :
-		<div className='product-view'>
-			<h4>{state.name}</h4>
-
+		<div className='product-view'>			
+            <div className='product-header'>
+                    <h4 className='h4-header'>Zmiana</h4>
+                    <p className='p-header'>Today-zmiana</p>
+            </div>
+            <h4>{state.name}</h4>
             <form onSubmit={handleSubmit}>
                 {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
                     <option>Select meal</option>
@@ -106,9 +109,10 @@ const Product = props => {
                     <option value="Snack2">Snack II</option>
                     <option value="Dinner">Dinner</option>
                 </select> */}
-                <div className='roboczo'>
-                    <p>100g</p>
-                    <p>98 kcal</p>
+                
+                <div className='product-100g'>
+                    <p className='p-units'>100g</p>
+                    <p className='p-kcal'>98 kcal</p>
                     <div className='field'>
                         <p className='control'>
                             <button className='button is-success' type='submit' >
@@ -117,7 +121,7 @@ const Product = props => {
                         </p>
 			        </div>
                 </div>
-                <div className='roboczo1'>
+                <div className='product-units'>
                     <div className='field'>
                         <p className='control'>
                             <input
