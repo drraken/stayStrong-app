@@ -8,32 +8,31 @@ import * as serviceWorker from './serviceWorker';
 Amplify.configure({
 	Auth: {
 		mandatorySignId: true,
-		region: process.env.REGION,
-		userPoolId: process.env.USER_POOL_ID,
-		identityPoolId: process.env.IDENTITY_POOL_ID,
-		userPoolWebClientId: process.env.APP_CLIENT_ID
+		region: process.env.REACT_APP_REGION,
+		userPoolId: process.env.REACT_APP_USER_POOL_ID,
+		identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID,
+		userPoolWebClientId: process.env.REACT_APP_CLIENT_ID
 	},
 	API:{
 		endpoints:[
 			{
 				name: 'products',
-				endpoint: process.env.URL,
-				region: process.env.REGION
+				endpoint: process.env.REACT_APP_URL,
+				region: process.env.REACT_APP_REGION
 			},
 			{
 				name: 'meals',
-				endpoint: process.env.URL,
-				region: process.env.REGION
+				endpoint: process.env.REACT_APP_URL,
+				region: process.env.REACT_APP_REGION
 			},
 			{
 				name: 'usersParameters',
-				endpoint: process.env.URL,
-				region: process.env.REGION
+				endpoint: process.env.REACT_APP_URL,
+				region: process.env.REACT_APP_REGION
 			}
 		]
 	}
 });
-console.log(process.env.REACT_APP_CLIENT_ID);
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
