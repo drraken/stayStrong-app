@@ -6,6 +6,8 @@ import './Product.scss';
 import { API } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../components/Loader/Loader';
+import FormErrors from '../../components/Validation/FormErrorsProducts';
+import Validate from '../../components/Validation/FormValidationAmount';
 
 
 const Product = props => {
@@ -31,7 +33,12 @@ const Product = props => {
 		proteins: '',
 		fats: '',
         carbs: '',
-        day: day1
+        day: day1,
+        errors: {
+			aws:null,
+			blankfield: false,
+			invalidFormat: false
+		}
     }
     
     const [state, setState] = useState(defaultState)
@@ -76,14 +83,23 @@ const Product = props => {
     
 	async function handleSubmit(event) {
 		event.preventDefault();
-		setIsLoading(true);
-		try{
-			await createMeal(mealState);
-			history.push('/');
-		} catch(e){
-			console.log(e);
-			setIsLoading(false);
-		}
+        setIsLoading(true);
+        const error = Validate(event, mealState);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		  setIsLoading(false);
+		} else{
+            try{
+                await createMeal(mealState);
+                history.push('/');
+            } catch(e){
+                console.log(e);
+                setIsLoading(false);
+            }
+        }
     }
     
     const onInputChange = event => {
@@ -96,7 +112,7 @@ const Product = props => {
         isLoading ? <Loading/> :
 		<div className='product-view'>
 			<h2>{state.name}</h2>
-
+            <FormErrors formerrors={state.errors} />
             <form onSubmit={handleSubmit}>
                 <div className='field'>
                     <p className='control'>
