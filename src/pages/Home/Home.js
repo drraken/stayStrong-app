@@ -80,7 +80,7 @@ const Home = () => {
 		  }
 		
 		onLoad();
-	},[deleteMeal, user.isAuthenticated])
+	},[user.isAuthenticated])
 	function dateTimeNow(){
 		const now = new Date()  
 		const daysSinceEpoch = Math.floor(now.getTime() / 86400000)  
