@@ -8,27 +8,27 @@ import * as serviceWorker from './serviceWorker';
 Amplify.configure({
 	Auth: {
 		mandatorySignId: true,
-		region: Amplify.REGION,
-		userPoolId: Amplify.USER_POOL_ID,
-		identityPoolId: Amplify.IDENTITY_POOL_ID,
-		userPoolWebClientId: Amplify.APP_CLIENT_ID
+		region: process.env.REGION,
+		userPoolId: process.env.USER_POOL_ID,
+		identityPoolId: process.env.IDENTITY_POOL_ID,
+		userPoolWebClientId: process.env.APP_CLIENT_ID
 	},
 	API:{
 		endpoints:[
 			{
 				name: 'products',
-				endpoint: Amplify.URL,
-				region: Amplify.REGION
+				endpoint: process.env.URL,
+				region: process.env.REGION
 			},
 			{
 				name: 'meals',
-				endpoint: Amplify.URL,
-				region:Amplify.REGION
+				endpoint: process.env.URL,
+				region: process.env.REGION
 			},
 			{
 				name: 'usersParameters',
-				endpoint: Amplify.URL,
-				region: Amplify.REGION
+				endpoint: process.env.URL,
+				region: process.env.REGION
 			}
 		]
 	}
