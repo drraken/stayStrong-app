@@ -5,13 +5,20 @@ import { useHistory } from 'react-router-dom';
 import './AddEditParameter.scss';
 import { useStateValue } from '../../stateProvider.js';
 import Loader from '../../components/Loader/Loader';
+import FormErrors from '../../components/Validation/FormErrorsProducts';
+import Validate from '../../components/Validation/FormValidationUserParameter';
 
 const AddEditParameter = () => {
     const defaultState={
 		kcalGoal: '',
 		proteinGoal: '',
 		fatGoal: '',
-		carbGoal:''
+		carbGoal:'',
+		errors: {
+			aws:null,
+			blankfield: false,
+			invalidFormat: false
+		}
     };
 	const [isLoading, setIsLoading] = useState(true);
 	const [{user},dispatch] = useStateValue();
@@ -54,18 +61,27 @@ const AddEditParameter = () => {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
-		try{
-			if(id === ''){
-				await createParameter(state);
-			} else{
-				await updateParameter(state);
+		const error = Validate(event, state);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		  setIsLoading(false);
+		} else{
+			try{
+				if(id === ''){
+					await createParameter(state);
+				} else{
+					await updateParameter(state);
+				}
+					
+			} catch(e){
+				console.log(e);
+				setIsLoading(false);
 			}
-				
-		} catch(e){
-			console.log(e);
-			setIsLoading(false);
+			history.push('/');
 		}
-		history.push('/');
 	}
 	const onInputChange = event => {
 		setState({
@@ -80,7 +96,7 @@ const AddEditParameter = () => {
 			{id === '' ?
             <h2>Add your makro goals</h2>
 			: <h2>Edit your makro goals</h2>}
-
+			<FormErrors formerrors={state.errors} />
             <div className='user-parameter'>
 				<form onSubmit={handleSubmit} >
 				

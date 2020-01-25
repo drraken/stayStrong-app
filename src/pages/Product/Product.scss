@@ -1,4 +1,11 @@
 .product-view{
+    .is-danger{
+        border: 1px solid red;
+    }
+    .help{
+        color:red;
+        padding: 2px;
+    }
     form{
         input{
             color:black;
