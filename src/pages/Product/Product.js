@@ -6,6 +6,8 @@ import './Product.scss';
 import { API } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
 import Loading from '../../components/Loader/Loader';
+import FormErrors from '../../components/Validation/FormErrorsProducts';
+import Validate from '../../components/Validation/FormValidationAmount';
 
 
 const Product = props => {
@@ -31,7 +33,12 @@ const Product = props => {
 		proteins: '',
 		fats: '',
         carbs: '',
-        day: day1
+        day: day1,
+        errors: {
+			aws:null,
+			blankfield: false,
+			invalidFormat: false
+		}
     }
     
     const [state, setState] = useState(defaultState)
@@ -76,14 +83,23 @@ const Product = props => {
     
 	async function handleSubmit(event) {
 		event.preventDefault();
-		setIsLoading(true);
-		try{
-			await createMeal(mealState);
-			history.push('/');
-		} catch(e){
-			console.log(e);
-			setIsLoading(false);
-		}
+        setIsLoading(true);
+        const error = Validate(event, mealState);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		  setIsLoading(false);
+		} else{
+            try{
+                await createMeal(mealState);
+                history.push('/');
+            } catch(e){
+                console.log(e);
+                setIsLoading(false);
+            }
+        }
     }
     
     const onInputChange = event => {
@@ -100,6 +116,7 @@ const Product = props => {
                     <p className='p-header'>Today-zmiana</p>
             </div>
             <h4>{state.name}</h4>
+            <FormErrors formerrors={state.errors} />
             <form onSubmit={handleSubmit}>
                 {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
                     <option>Select meal</option>
@@ -116,7 +133,7 @@ const Product = props => {
                     <div className='field'>
                         <p className='control'>
                             <button className='button is-success' type='submit' >
-                                <i class="fas fa-chevron-circle-right"></i>
+                                <i className="fas fa-chevron-circle-right"></i>
                             </button>
                         </p>
 			        </div>

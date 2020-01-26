@@ -23,7 +23,17 @@
         h4 {
             margin: 20px 0px;
         }
+    .is-danger{
+        border: 1px solid red;
+    }
+    .help{
+        color:red;
+        padding: 2px;
+    }
     form{
+        input{
+            color:black;
+        }
         .select-type{
             color:black;
            

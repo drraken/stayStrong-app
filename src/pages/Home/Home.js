@@ -6,7 +6,7 @@ import { API } from 'aws-amplify';
 import { NavLink } from 'react-router-dom';
 import { useStateValue } from '../../stateProvider.js';
 import Loader from '../../components/Loader/Loader';
-import Header from '../../components/Header/Header'
+
 
 
 
@@ -28,14 +28,19 @@ const Home = () => {
 	const toggleTrueFalse2 = () => setIsClickedLunch(!isClickedLunch);
 	const toggleTrueFalse3 = () => setIsClickedSnack2(!isClickedSnack2);
 	const toggleTrueFalse4 = () => setIsClickedDinner(!isClickedDinner);
-
-
+	
+	
 	function loadMeals() {
 		return API.get('meals', '/meals');
 	}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function deleteMeal(mealId){
-		return API.del('meals',`/meals/${mealId}`)
+		API.del('meals',`/meals/${mealId}`);
+		const updatedItems = mealState.filter(e=>{
+			return e.mealId !== mealId
+		})
+		setMealState(updatedItems);
+		console.log(mealState);
 	}
 	function loadParameters(){
 		return API.get('usersParameters','/usersParameters')
@@ -65,7 +70,6 @@ const Home = () => {
 		}
 		loadParameter();
 	},[user.isAuthenticated]);
-
 	useEffect(()=>{
 		async function onLoad() {
 			if (!user.isAuthenticated) {
@@ -78,9 +82,9 @@ const Home = () => {
 			  console.log(e);
 			}
 		  }
-		
 		onLoad();
 	},[user.isAuthenticated])
+	console.log('console test');
 	function dateTimeNow(){
 		const now = new Date()  
 		const daysSinceEpoch = Math.floor(now.getTime() / 86400000)  
@@ -110,6 +114,7 @@ const Home = () => {
 			''
 		);
 	}
+
 	function renderSumMealList(mealState,type){
 		let kcalSum = 0;
 		let proteinSum = 0;
@@ -152,49 +157,53 @@ const Home = () => {
 			</p>
 		)
 	}
-
 	function generateStyle(mealState,type){
 		let generalSum = 0;
 		let finnalWidth = 0;
 		let lineProggresiveStyle;
-		mealState.forEach(element =>{
-			if(element.day === dateView.toString()){
-					if(type === 'kcal')
-						generalSum += Number(element.kcal);
-					if(type === 'p')
-						generalSum += Number(element.proteins);
-					if(type === 'f')
-						generalSum += Number(element.fats);
-					if(type === 'c')
-						generalSum += Number(element.carbs);
-				}
-			});
-			if(type === 'kcal')
-				finnalWidth = Number(generalSum) / Number(parameterState.kcalGoal) * 100;
-			if(type === 'p')
-				finnalWidth = Number(generalSum) / Number(parameterState.proteinGoal) * 100;
-			if(type === 'f')
-				finnalWidth = Number(generalSum) / Number(parameterState.fatGoal) * 100;
-			if(type === 'c')
-				finnalWidth = Number(generalSum) / Number(parameterState.carbGoal) * 100;
-	
-		if(finnalWidth>100){
-			lineProggresiveStyle ={
-				width: '90%',
-				backgroundColor: 'red'
-			};
+		if(parameterState.kcalGoal !== undefined && parameterState.kcalGoal !== null){
+			mealState.forEach(element =>{
+				if(element.day === dateView.toString()){
+						if(type === 'kcal')
+							generalSum += Number(element.kcal);
+						if(type === 'p')
+							generalSum += Number(element.proteins);
+						if(type === 'f')
+							generalSum += Number(element.fats);
+						if(type === 'c')
+							generalSum += Number(element.carbs);
+					}
+				});
+				if(type === 'kcal')
+					finnalWidth = Number(generalSum) / Number(parameterState.kcalGoal) * 100;
+				if(type === 'p')
+					finnalWidth = Number(generalSum) / Number(parameterState.proteinGoal) * 100;
+				if(type === 'f')
+					finnalWidth = Number(generalSum) / Number(parameterState.fatGoal) * 100;
+				if(type === 'c')
+					finnalWidth = Number(generalSum) / Number(parameterState.carbGoal) * 100;
+		
+			if(finnalWidth>100){
+				lineProggresiveStyle ={
+					width: '90%',
+					backgroundColor: 'red'
+				};
+			} else{
+				// eslint-disable-next-line prefer-template
+				finnalWidth = finnalWidth.toFixed(0) + '%';
+				
+				lineProggresiveStyle ={
+					width: finnalWidth
+				}	
+			}
 		} else{
-			// eslint-disable-next-line prefer-template
-			finnalWidth = finnalWidth.toFixed(0) + '%';
 			lineProggresiveStyle ={
-				width: finnalWidth
+				width: '0%'
 			};
 		}
-		
 		return lineProggresiveStyle;
 	}
 	return (
-		
 		isLoading ? <Loader/> :
 		<div className='home-view'>
 			{/* <Header /> */}
