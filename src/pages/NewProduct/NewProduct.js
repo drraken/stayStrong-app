@@ -83,7 +83,6 @@ const NewProduct = props => {
 		<div className="newproduct">
 		  <form onSubmit={handleSubmit}>
 			<div className="header-newp">
-				<i className="fas fa-arrow-left"></i>
 				<h4 className="p-header">New product</h4>
 				<div className='field'>
 				<p className='control'>
@@ -227,7 +226,7 @@ const NewProduct = props => {
 					<h4 className="units">g</h4>
 				</span>
 			</div>
-			 
+			
 			{isLoading === true ? (
 					<Loading />
 				) : 
@@ -235,6 +234,7 @@ const NewProduct = props => {
 					<p></p>
 				)}
 		  </form>
+		  	<p className='pinfo'>Insert values in 100g of product</p>
 		</div>
 	  );
 };
