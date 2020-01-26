@@ -82,7 +82,8 @@ const Product = props => {
 	}
     
 	async function handleSubmit(event) {
-		event.preventDefault();
+        event.preventDefault();
+        console.log(mealState);
         setIsLoading(true);
         const error = Validate(event, mealState);
 		if (error) {
@@ -105,34 +106,73 @@ const Product = props => {
     const onInputChange = event => {
 		setMealState({
 			...mealState,
-			[event.target.id]: event.target.value
+			[event.target.id]: event.target.value.replace(/,/g, '.')
 		});
     };
+    function dateTimeNow(){
+		const today = new Date();
+		const yesterday = new Date(today);
+		const tomorrow = new Date(today);
+		yesterday.setDate(today.getDate() -1);
+		tomorrow.setDate(today.getDate() +1);
+		const requestDay = new Date(day1 * 86400000);
+		const slicedRequestDay = String(requestDay).slice(4,10);
+		const slicedToday = String(today).slice(4,10);
+		const slicedYesterday = String(yesterday).slice(4,10);
+		const slicedTomorrow = String(tomorrow).slice(4,10);
+
+		if(slicedRequestDay === slicedToday){
+			return 'Today';
+		}
+		if(slicedRequestDay === slicedYesterday){
+			return 'Yesterday';
+		}
+		if(slicedRequestDay === slicedTomorrow){
+			return 'Tomorrow';
+		}
+		return slicedRequestDay;
+	};
+    function showMeal(){
+		if(type1 === 'breakfast' || type1 === 'lunch' || type1 === 'dinner'){
+			const mealName = type1.charAt(0).toUpperCase() + type1.slice(1);
+			return mealName;
+		}
+		if(type1 === 'snack1'){
+			const mealName = 'Snack I';
+			return mealName;
+		}
+		if(type1 === 'snack2'){
+			const mealName = 'Snack II';
+			return mealName;
+		}
+    }
+    
 	return (
         isLoading ? <Loading/> :
 		<div className='product-view'>			
             <div className='product-header'>
-                    <h4 className='h4-header'>Zmiana</h4>
-                    <p className='p-header'>Today-zmiana</p>
+                    <h4 className='h4-header'>{showMeal()}</h4>
+                    <p className='p-header'>{dateTimeNow()}</p>
             </div>
             <h4>{state.name}</h4>
             <FormErrors formerrors={state.errors} />
             <form onSubmit={handleSubmit}>
-                {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
-                    <option>Select meal</option>
-                    <option value="Breakfast">Breakfast</option>
-                    <option value="Snack1">Snack I</option>
-                    <option value="Lunch">Lunch</option>
-                    <option value="Snack2">Snack II</option>
-                    <option value="Dinner">Dinner</option>
-                </select> */}
                 
                 <div className='product-100g'>
-                    <p className='p-units'>100g</p>
-                    <p className='p-kcal'>98 kcal</p>
+                    <p className='p-units'>100 g</p>
+                    <p className='p-kcal'>{state.kcal} kcal</p>
                     <div className='field'>
                         <p className='control'>
-                            <button className='button is-success' type='submit' >
+                            <button className='button is-success' type='submit'
+                             onClick={()=> setMealState({
+                                    ...mealState,
+                                    amount: 100,
+                                    name: state.name,
+                                    kcal: state.kcal,
+                                    proteins: state.proteins,
+                                    fats: state.fats,
+                                    carbs: state.carbs
+                                })} >
                                 <i className="fas fa-chevron-circle-right"></i>
                             </button>
                         </p>
@@ -146,7 +186,7 @@ const Product = props => {
                                 type='text'
                                 id='amount'
                                 aria-describedby='amountHelp'
-                                placeholder='Amount in g'
+                                placeholder='Amount'
                                 value={mealState.amount}
                                 onChange={onInputChange}
                             />
@@ -161,12 +201,12 @@ const Product = props => {
                         </p>
 			        </div>
                     <div className='field'>
-                        <p>0 kcal</p>
+                        <p>{Number(mealState.kcal).toFixed(0)} kcal</p>
                     </div>
                     <div className='field'>
                         <p className='control'>
                             <button className='button is-success' type='submit' >
-                                <i class="fas fa-chevron-circle-right"></i>
+                                <i className="fas fa-chevron-circle-right"></i>
                             </button>
                         </p>
 			        </div>
@@ -176,7 +216,7 @@ const Product = props => {
             <div className='details'>
                 <div className='field'>
                     <p className='control'>
-                        <button className='button-details'>
+                        <button className='button-details' type='button'>
                             Natritional value
                         </button>
                     </p>

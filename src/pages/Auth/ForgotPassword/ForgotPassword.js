@@ -29,7 +29,6 @@ const ForgotPassword = ()=> {
   const forgotPasswordHandler = async event => {
     event.preventDefault();
 
-    // Form validation
     clearErrorState();
     const error = Validate(event, state);
     if (error) {
@@ -37,8 +36,6 @@ const ForgotPassword = ()=> {
         errors: { ...state.errors, ...error }
       });
     }
-
-    // AWS Cognito integration here
     try{
         await Auth.forgotPassword(state.email);
         history.push('/forgotpasswordverification');
@@ -64,6 +61,7 @@ const ForgotPassword = ()=> {
     });
     document.getElementById(event.target.id).classList.remove('is-danger');
   }
+  console.log('test');
     return (
       <section className='section auth'>
         <div className='container'>
@@ -76,7 +74,7 @@ const ForgotPassword = ()=> {
 
           <form onSubmit={forgotPasswordHandler}>
             <div className='field'>
-              <p className='control has-icons-left has-icons-right'>
+              <span className='control has-icons-left has-icons-right'>
                 <span className='icon is-small is-left'>
                   <i className='fas fa-envelope'></i>
                 </span>
@@ -89,10 +87,12 @@ const ForgotPassword = ()=> {
                   value={state.email}
                   onChange={onInputChange}
                 />
-              </p>
+              </span>
             </div>
             <div className='field'>
-              <p className='control'>
+              <span className='control'>
+                    { user.isAuthenticated ?
+                    <div/> :
                     <NavLink
                         to='/login'
                         onClick={() => {
@@ -104,14 +104,15 @@ const ForgotPassword = ()=> {
                     >
                         <span>Log in here.</span>
                     </NavLink>
-              </p>
+                    }
+              </span>
             </div>
             <div className='field'>
-              <p className='control'>
+              <span className='control'>
                 <button className='button is-success' type='submit'>
                   Submit
                 </button>
-              </p>
+              </span>
             </div>
           </form>
         </div>
