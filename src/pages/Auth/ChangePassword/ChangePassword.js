@@ -85,6 +85,9 @@ const ChangePassword = ()=> {
           <form onSubmit={handleSubmit}>
             <div className='field'>
               <p className='control has-icons-left'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-lock icon'></i>
+                </span>
                 <input 
                   className='input' 
                   type='password'
@@ -93,13 +96,13 @@ const ChangePassword = ()=> {
                   value={state.oldpassword}
                   onChange={onInputChange}
                 />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock icon'></i>
-                </span>
               </p>
             </div>
             <div className='field'>
               <p className='control has-icons-left'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-lock icon'></i>
+                </span>
                 <input
                   className='input'
                   type='password'
@@ -108,13 +111,13 @@ const ChangePassword = ()=> {
                   value={state.newpassword}
                   onChange={onInputChange}
                 />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock icon'></i>
-                </span>
               </p>
             </div>
             <div className='field'>
               <p className='control has-icons-left'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-lock icon'></i>
+                </span>
                 <input
                   className='input'
                   type='password'
@@ -123,9 +126,6 @@ const ChangePassword = ()=> {
                   value={state.confirmpassword}
                   onChange={onInputChange}
                 />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock icon'></i>
-                </span>
               </p>
             </div>
             <div className='field'>

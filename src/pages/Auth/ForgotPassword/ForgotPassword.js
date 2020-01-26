@@ -77,6 +77,9 @@ const ForgotPassword = ()=> {
           <form onSubmit={forgotPasswordHandler}>
             <div className='field'>
               <p className='control has-icons-left has-icons-right'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-envelope'></i>
+                </span>
                 <input
                   type='email'
                   className='input'
@@ -86,9 +89,6 @@ const ForgotPassword = ()=> {
                   value={state.email}
                   onChange={onInputChange}
                 />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-envelope'></i>
-                </span>
               </p>
             </div>
             <div className='field'>

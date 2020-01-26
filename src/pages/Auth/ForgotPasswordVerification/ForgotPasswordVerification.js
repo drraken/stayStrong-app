@@ -3,6 +3,7 @@ import { useHistory} from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import FormErrors from '../../../components/Validation/FormErrors.js';
 import Validate from '../../../components/Validation/FormValidation.js';
+import './ForgotPasswordVerification.scss'
 
 const ForgotPasswordVerification = () => {
     const history = useHistory();
@@ -86,7 +87,7 @@ const onInputChange = event => {
               <p className='control'>
                 <input
                   type='text'
-                  className='input'
+                  className='input-fpv-code'
                   id='verificationcode'
                   aria-describedby='verificationCodeHelp'
                   placeholder='Enter verification code'
@@ -97,33 +98,33 @@ const onInputChange = event => {
             </div>
             <div className='field'>
               <p className='control has-icons-left'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-envelope'></i>
+                </span>
                 <input 
-                  className='input' 
+                  className='input-fpv' 
                   type='email'
                   id='email'
                   aria-describedby='emailHelp'
                   placeholder='Enter email'
                   value={state.email}
                   onChange={onInputChange}
-                />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-envelope'></i>
-                </span>
+                />                
               </p>
             </div>
             <div className='field'>
               <p className='control has-icons-left'>
+                <span className='icon is-small is-left'>
+                  <i className='fas fa-lock'></i>
+                </span>
                 <input
                   type='password'
-                  className='input'
+                  className='input-fpv'
                   id='newpassword'
                   placeholder='New password'
                   value={state.newpassword}
                   onChange={onInputChange}
                 />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
-                </span>
               </p>
             </div>
             <div className='field'>

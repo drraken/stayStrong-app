@@ -107,34 +107,81 @@ const Product = props => {
 			...mealState,
 			[event.target.id]: event.target.value
 		});
-	};
+    };
 	return (
         isLoading ? <Loading/> :
-		<div className='product-view'>
-			<h2>{state.name}</h2>
+		<div className='product-view'>			
+            <div className='product-header'>
+                    <h4 className='h4-header'>Zmiana</h4>
+                    <p className='p-header'>Today-zmiana</p>
+            </div>
+            <h4>{state.name}</h4>
             <FormErrors formerrors={state.errors} />
             <form onSubmit={handleSubmit}>
+                {/* <select id='type' className='select-type' value={mealState.type} onChange={onInputChange}>
+                    <option>Select meal</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Snack1">Snack I</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Snack2">Snack II</option>
+                    <option value="Dinner">Dinner</option>
+                </select> */}
+                
+                <div className='product-100g'>
+                    <p className='p-units'>100g</p>
+                    <p className='p-kcal'>98 kcal</p>
+                    <div className='field'>
+                        <p className='control'>
+                            <button className='button is-success' type='submit' >
+                                <i className="fas fa-chevron-circle-right"></i>
+                            </button>
+                        </p>
+			        </div>
+                </div>
+                <div className='product-units'>
+                    <div className='field'>
+                        <p className='control'>
+                            <input
+                                className='input'
+                                type='text'
+                                id='amount'
+                                aria-describedby='amountHelp'
+                                placeholder='Amount in g'
+                                value={mealState.amount}
+                                onChange={onInputChange}
+                            />
+                        </p>
+			        </div>
+                    <div className='field'>
+                        <p className='control'>
+                            <select>
+                                <option className='units'>g</option>
+                                <option className='units'>ml</option>
+                            </select>
+                        </p>
+			        </div>
+                    <div className='field'>
+                        <p>0 kcal</p>
+                    </div>
+                    <div className='field'>
+                        <p className='control'>
+                            <button className='button is-success' type='submit' >
+                                <i class="fas fa-chevron-circle-right"></i>
+                            </button>
+                        </p>
+			        </div>
+                </div>
+                
+            </form>
+            <div className='details'>
                 <div className='field'>
                     <p className='control'>
-                        <input
-                            className='input'
-                            type='text'
-                            id='amount'
-                            aria-describedby='amountHelp'
-                            placeholder='Amount in g'
-                            value={mealState.amount}
-                            onChange={onInputChange}
-                        />
-                    </p>
-			    </div>
-                <div className='field'>
-                    <p className='control'>
-                        <button className='button is-success' type='submit' >
-                            Add product
+                        <button className='button-details'>
+                            Natritional value
                         </button>
                     </p>
-			    </div>
-            </form>
+                </div>
+            </div>
 		</div>
 	);
 };

@@ -83,7 +83,7 @@ const Login = () => {
 				<form onSubmit={handleSubmit}>
 					<div className='field'>
 						<p className='control'>
-							<span className='icon is-small is-left'>
+							<span className='icon-login-user'>
 								<i className='fa fa-user icon' />
 							</span>
 							<input
@@ -99,7 +99,7 @@ const Login = () => {
 					</div>
 					<div className='field'>
 						<p className='control has-icons-left'>
-							<span className='icon is-small is-left'>
+							<span className='icon-login-lock'>
 								<i className='fas fa-lock icon' />
 							</span>
 							<input

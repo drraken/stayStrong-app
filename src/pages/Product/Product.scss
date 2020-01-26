@@ -1,4 +1,28 @@
+@import "./../../main.scss";
 .product-view{
+    .product-header {
+        background-color: $black;
+        height: 60px;
+        width: 110%;
+        margin-left: -1rem;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        .h4-header {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .p-header {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+    }
+        h4 {
+            margin: 20px 0px;
+        }
     .is-danger{
         border: 1px solid red;
     }
@@ -16,6 +40,74 @@
             option{
                 color:black;              
             }
+        }  
+        .product-100g {
+            background-color: $black;
+            height: 3rem;
+            width: 110%;
+            margin-left: -1rem;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .p-units {         
+            color: $white-darker-three;
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+        .p-kcal {
+            color: $white-darker-three;
+            font-weight: bold;
+            //margin-left: 8.6rem;
+        }       
+        .product-units {
+            margin-top: 0.5rem;
+            background-color: $black;
+            height: 3rem;
+            width: 110%;
+            margin-left: -1rem;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input {
+            color: black;
+            margin-left: 1rem;
+            padding-left: 0.2rem;
+            border-style: none;
+            width: 5rem;
+        }
+        select {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+            //margin-right: 40px;
+            width: 60px;
+        }
+        select option {
+            color: black;
+        }
+        p {
+            color: $white-darker-three;
+            font-weight: bold;
+        }
+        .button.is-success {
+            background-color: transparent;
+            border-style: none;
+            width: 35px;
+            height: 35px;
+            margin-right: 0.5rem;
         }
     }
+    .details {
+        display: flex;
+        justify-content: center;
+    }
+    }
+    .button-details {
+        color: $white-darker-three;
+        background-color: transparent;
+        border-style: none;       
 }
