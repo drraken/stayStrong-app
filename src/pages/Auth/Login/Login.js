@@ -22,55 +22,49 @@ const Login = () => {
 	const [state, setState] = useState(defaultState);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const clearErrorState = () => {
-		setState({
-		  ...state,
-		  errors: {
-			cognito: null,
-			blankfield: false
-		  }
-		});
-	  };
 
 	const handleSubmit = async event => {
+		console.log(state);
 		event.preventDefault();
 		setIsLoading(true);
-		clearErrorState();
+	
+		console.log(state);
 		const error = Validate(event, state);
 		if (error) {
 		  setState({
 			...state,
 			errors: { ...state.errors, ...error }
 		  });
-		}
-
-		try {
-			const loggedUser = await Auth.signIn(
-				state.username,
-				state.password
-			);
-			dispatch({
-				type: 'authentication-user',
-				isAuthenticated: true,
-				userName: loggedUser.username
-			});
-			dispatch({
-				type: 'location',
-				newLocation: 'home'
-			});
-			history.push('/');
-		} catch (error) {
-			let err = null;
-			// eslint-disable-next-line no-unused-expressions
-			!error.message ? (err = { message: error }) : (err = error);
-			setState({
-				...state,
-				errors: {
-					...state.errors,
-					cognito: error
-				}
-			});
-			setIsLoading(false);
+		  setIsLoading(false);
+		} else{
+			try {
+				const loggedUser = await Auth.signIn(
+					state.username,
+					state.password
+				);
+				dispatch({
+					type: 'authentication-user',
+					isAuthenticated: true,
+					userName: loggedUser.username
+				});
+				dispatch({
+					type: 'location',
+					newLocation: 'home'
+				});
+				history.push('/');
+			} catch (error) {
+				let err = null;
+				// eslint-disable-next-line no-unused-expressions
+				!error.message ? (err = { message: error }) : (err = error);
+				setState({
+					...state,
+					errors: {
+						cognito: error,
+						blankfield: false
+					}
+				});
+				setIsLoading(false);
+			}
 		}
 	};
 

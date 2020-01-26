@@ -1,5 +1,12 @@
 @import "./../../main.scss";
 form {
+    .is-danger{
+        border: 1px solid red;
+    }
+    .help{
+        color:red;
+        padding: 2px;
+    }
     .header-newp {
         width: 110%;
         margin-left: -1rem;
@@ -10,13 +17,16 @@ form {
         align-items: center;
         justify-content: space-between;
         .p-header {
-            margin-left: 0.5rem;
+            margin-left: 1rem;
         }
         button {
-            margin-right: 0.5rem;
+            margin-right: 0.8rem;
             color: $white-darker-three;
             background-color: transparent;
-            border-style: none;            
+            border-style: none;  
+            font-size: 20px;  
+            font-weight: 700;    
+            color:white;    
         }
     }
     .input-name {
@@ -26,6 +36,7 @@ form {
         float: right;
         background-color: transparent;
         border-width: thin;
+        height: 25px;
     }
     .input-brand {
         color: white;
@@ -34,6 +45,7 @@ form {
         float: right;
         background-color: transparent;
         border-width: thin;
+        height: 25px;
     }
     .input1 {
         color: white;
@@ -44,6 +56,7 @@ form {
         background-color: transparent;
         border-width: thin;
         //width: 80px;
+        height: 25px;
         width: 6rem;
     }
     .li-newp-name {       

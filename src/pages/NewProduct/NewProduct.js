@@ -4,6 +4,8 @@ import './NewProduct.scss';
 import { useHistory } from 'react-router-dom';
 import { API } from 'aws-amplify';
 import Loading from '../../components/Loader/Loader';
+import FormErrors from '../../components/Validation/FormErrorsProducts';
+import Validate from '../../components/Validation/FormValidationProducts';
 
 
 
@@ -17,7 +19,12 @@ const NewProduct = props => {
 		saturated: 0,
 		carbs: '',
 		sugars: 0,
-		salt: 0
+		salt: 0,
+		errors: {
+			aws:null,
+			blankfield: false,
+			invalidFormat: false
+		}
 	};
 
 	const [state, setState] = useState(defaultState);
@@ -37,13 +44,33 @@ const NewProduct = props => {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setIsLoading(true);
-		try{
-			const returnData = await createProduct(state);
-			history.push(`/products/${type}/${day}/${returnData.productId}`);
-		} catch(e){
-			console.log(e);
-			setIsLoading(false);
-		}
+		const error = Validate(event, state);
+		if (error) {
+		  setState({
+			...state,
+			errors: { ...state.errors, ...error }
+		  });
+		  setIsLoading(false);
+		} else{
+			try{
+				const returnData = await createProduct(state);
+				history.push(`/products/${type}/${day}/${returnData.productId}`);
+			} catch(error){
+				let err = null;
+				// eslint-disable-next-line no-unused-expressions
+				!error.message ? (err = { message: error }) : (err = error);
+				setState({
+					...state,
+					errors: {
+						aws:error,
+						blankfield: false,
+						invalidFormat: false
+					}
+				});
+				console.log(error);
+				setIsLoading(false);
+			}
+		}	
 	}
 
 	const onInputChange = event => {
@@ -53,7 +80,7 @@ const NewProduct = props => {
 		});
 	};
 	  return (
-		<div className="NewNote">
+		<div className="newproduct">
 		  <form onSubmit={handleSubmit}>
 			<div className="header-newp">
 				<h4 className="p-header">New product</h4>
@@ -65,10 +92,10 @@ const NewProduct = props => {
 				</p>
 				</div>
 			</div>
-			
+			<FormErrors formerrors={state.errors} />
 		  	<div className='field'>
 				<h4 className="li-newp-name">Name*</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input-name'
 						type='text'
@@ -78,11 +105,11 @@ const NewProduct = props => {
 						value={state.name}
 						onChange={onInputChange}
 					/>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 			<h4 className="li-newp">Brand</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input-brand'
 						type='text'
@@ -92,11 +119,11 @@ const NewProduct = props => {
 						value={state.company === 0 ? '' : state.company}
 						onChange={onInputChange}
 					/>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp">Calories*</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -107,11 +134,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">kcal</h4>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp">Fat*</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -122,11 +149,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp-s">Saturated</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -137,11 +164,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp">Carbs*</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -152,11 +179,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp-s">Sugars</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -167,11 +194,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>
 			<div className='field'>
 				<h4 className="li-newp">Proteins*</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -182,11 +209,11 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>		
 			<div className='field'>
 				<h4 className="li-newp">Salt</h4>
-				<p className='control'>
+				<span className='control'>
 					<input
 						className='input1'
 						type='text'
@@ -197,7 +224,7 @@ const NewProduct = props => {
 						onChange={onInputChange}
 					/>
 					<h4 className="units">g</h4>
-				</p>
+				</span>
 			</div>
 			
 			{isLoading === true ? (
