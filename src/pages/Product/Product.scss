@@ -59,7 +59,6 @@
         .p-kcal {
             color: $white-darker-three;
             font-weight: bold;
-            //margin-left: 8.6rem;
         }       
         .product-units {
             margin-top: 0.5rem;
@@ -83,7 +82,6 @@
             background-color: white;
             color: black;
             font-weight: bold;
-            //margin-right: 40px;
             width: 60px;
         }
         select option {
@@ -105,9 +103,21 @@
         display: flex;
         justify-content: center;
     }
+    .p-units {
+        float: left;
+        clear: both;
     }
-    .button-details {
-        color: $white-darker-three;
-        background-color: transparent;
-        border-style: none;       
+    .p-units-s {
+        float: left;
+        clear: both;
+        margin-left: 1.5rem;
+    }
+    .p-amount {
+        float: right;
+    }
+}
+.button-details {
+    color: $white-darker-three;
+    background-color: transparent;
+    border-style: none;       
 }

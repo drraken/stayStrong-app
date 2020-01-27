@@ -55,7 +55,6 @@ form {
         float: right;
         background-color: transparent;
         border-width: thin;
-        //width: 80px;
         height: 25px;
         width: 6rem;
     }
@@ -64,27 +63,24 @@ form {
         float:left;
         margin-top: 0.5rem;
     }
-    .li-newp {       
-        text-align: left;
+    .li-newp {
         clear: both;
         float:left;
         margin-top: 0.5rem;
     }
     .li-newp-s {
-        text-align: left;
         clear: both;
         float:left;
         margin-left: 1.5rem;
     }
     .units {
-        clear: both;
         float: right;
-        //position: relative;
-        margin-top: -2rem;
+        margin-right: -9rem;    
     }
     
 }
 .pinfo {
+    clear: both;
     float: right;
     font-size: 80%;
 }
