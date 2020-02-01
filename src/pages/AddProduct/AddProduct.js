@@ -4,7 +4,7 @@
 /* eslint-disable no-shadow */
 import React,{useState,useEffect} from 'react';
 import './AddProduct.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useHistory } from 'react-router-dom';
 import { API } from 'aws-amplify';
 import { useStateValue } from '../../stateProvider.js';
 import Loading from '../../components/Loader/Loader';
@@ -17,6 +17,7 @@ const AddProduct = props => {
 	const [search, setSearch] = useState('');
 	const [{user},dispatch] = useStateValue();
 	const { match } = props;
+	const history = useHistory();
 
 	const {type} = match.params;
 	const {day} = match.params;
@@ -60,6 +61,7 @@ const AddProduct = props => {
 			item !== undefined ?
 			<NavLink key={item.productId} to={`/products/${type}/${day}/${item.productId}`}>		
 				<h3>{item.name}</h3>
+				{item.company === 0 ? null : <p>{item.company}</p>}
 				<p>100 g</p>
 				<p>{item.kcal} kcal</p>		
 			</NavLink>
@@ -67,7 +69,6 @@ const AddProduct = props => {
 			''
 		);
 	}
-
 	function dateTimeNow(){
 		const today = new Date();
 		const yesterday = new Date(today);
@@ -110,8 +111,12 @@ const AddProduct = props => {
 		<div className='add-product-view'>
 			<div className='background-overlay'>
 				<div className='header-day-meal'>
+					
 					<p>{showMeal()}</p>
 					<p>{dateTimeNow()}</p>
+					<span role='button' onClick={()=>{ history.push('/')}}>
+						<i className="fas fa-arrow-left"></i>
+					</span>
 				</div>
 				<div className='search-box'>
 					<input placeholder='Write name of the product' type='text' className='search-box' value={search} onChange={event=>setSearch(event.target.value.toLowerCase())

@@ -10,14 +10,21 @@ form {
     .header-newp {
         width: 110%;
         margin-left: -1rem;
+        margin-top: -0.5rem;
+        @include respond-to(large) {
+            margin-top: 0;
+        }
         height: 3rem;
         background-color: $black;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
-        .p-header {
-            margin-left: 1rem;
+        span{
+            padding: 15px 30px 15px 25px;
+            i{
+                font-size: 25px;
+            }
         }
         button {
             margin-right: 0.8rem;
@@ -37,6 +44,9 @@ form {
         background-color: transparent;
         border-width: thin;
         height: 25px;
+        &:nth-child(1){
+            margin-top: 1rem;
+        }
     }
     .input-brand {
         color: white;
@@ -55,7 +65,6 @@ form {
         float: right;
         background-color: transparent;
         border-width: thin;
-        //width: 80px;
         height: 25px;
         width: 6rem;
     }
@@ -63,28 +72,29 @@ form {
         clear: both;
         float:left;
         margin-top: 0.5rem;
+        &:nth-child(1){
+            margin-top: 1rem;
+        }
     }
-    .li-newp {       
-        text-align: left;
+    .li-newp {
         clear: both;
         float:left;
         margin-top: 0.5rem;
+      
     }
     .li-newp-s {
-        text-align: left;
         clear: both;
         float:left;
         margin-left: 1.5rem;
     }
     .units {
-        clear: both;
         float: right;
-        //position: relative;
-        margin-top: -2rem;
+        margin-right: -9rem;    
     }
     
 }
 .pinfo {
+    clear: both;
     float: right;
     font-size: 80%;
 }

@@ -12,7 +12,10 @@ header {
 	top: 0;
 	width: 100%;
 	z-index: 1008;
-	
+	.title{
+		padding: 0;
+		margin-top: -5px;
+	}
 	img{
 		width: 240px;
 	}

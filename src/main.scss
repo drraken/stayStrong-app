@@ -23,4 +23,9 @@ $secondary: #43c7fe;
 			@content;
 		}
 	}
+	@if $media == small {
+		@media only screen and (max-width: 374px){
+			@content;
+		}
+	}
 }

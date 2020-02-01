@@ -83,13 +83,16 @@ const NewProduct = props => {
 		<div className="newproduct">
 		  <form onSubmit={handleSubmit}>
 			<div className="header-newp">
+				<span role='button' onClick={()=>{ history.push(`/addproduct/${type}/${day}`)}}>
+					<i className="fas fa-arrow-left"></i>
+				</span>
 				<h4 className="p-header">New product</h4>
 				<div className='field'>
-				<p className='control'>
-					<button className='button is-success' type='submit'>
-						Save
-					</button>
-				</p>
+					<p className='control'>
+						<button className='button is-success' type='submit'>
+							Save
+						</button>
+					</p>
 				</div>
 			</div>
 			<FormErrors formerrors={state.errors} />

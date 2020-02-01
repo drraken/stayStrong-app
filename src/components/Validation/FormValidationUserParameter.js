@@ -9,42 +9,82 @@ function validateFormUserParameter(event, state) {
         inputs[i].classList.remove('is-danger');
       }
     }
-  
-    if (state.hasOwnProperty('kcalGoal') && state.kcalGoal === '') {
+    // check for blank field in setOwnGoal section
+    if (state.hasOwnProperty('kcalGoal') && state.kcalGoal === '' && state.setOwnGoal === true) {
         document.getElementById('kcalGoal').classList.add('is-danger');
         return { blankfield: true };
     }
-    if (state.hasOwnProperty('proteinGoal') && state.proteinGoal === '') {
+    if (state.hasOwnProperty('proteinGoal') && state.proteinGoal === '' && state.setOwnGoal === true) {
         document.getElementById('proteinGoal').classList.add('is-danger');
         return { blankfield: true };
     }
-    if (state.hasOwnProperty('fatGoal') && state.fatGoal === '') {
+    if (state.hasOwnProperty('fatGoal') && state.fatGoal === '' && state.setOwnGoal === true) {
         document.getElementById('fatGoal').classList.add('is-danger');
         return { blankfield: true };
     }
-    if (state.hasOwnProperty('carbGoal') && state.carbGoal === '') {
+    if (state.hasOwnProperty('carbGoal') && state.carbGoal === '' && state.setOwnGoal === true) {
         document.getElementById('carbGoal').classList.add('is-danger');
         return { blankfield: true };
     }
-     // regex expression
+    // check for blank fields in custom section
+    if (state.hasOwnProperty('gender') && state.gender === '' && state.setOwnGoal === false) {
+        document.getElementById('gender').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    if (state.hasOwnProperty('activity') && state.activity === '' && state.setOwnGoal === false) {
+        document.getElementById('activity').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    if (state.hasOwnProperty('goal') && state.goal === '' && state.setOwnGoal === false) {
+        document.getElementById('goal').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    if (state.hasOwnProperty('weight') && state.weight === '' && state.setOwnGoal === false) {
+        document.getElementById('weight').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    if (state.hasOwnProperty('height') && state.height === '' && state.setOwnGoal === false) {
+        document.getElementById('height').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    if (state.hasOwnProperty('age') && state.age === '' && state.setOwnGoal === false) {
+        document.getElementById('age').classList.add('is-danger');
+        return { blankfield: true };
+    }
+    
+   
+    // regex expression
 
      const numberRegexKcal = /^[0-9]{4}([,.][0-9]{1,2})?$/;
      const numberRegex = /^[0-9]{2,3}([,.][0-9]{1,2})?$/;
- 
-    if (state.hasOwnProperty('kcalGoal') && !numberRegexKcal.test(state.kcalGoal) ) {
+    // regex check for setOwnGoal
+    if (state.hasOwnProperty('kcalGoal') && !numberRegexKcal.test(state.kcalGoal) && state.setOwnGoal === true ) {
         document.getElementById('kcalGoal').classList.add('is-danger');
         return { blankfield: false ,invalidFormat: true };
     }
-    if (state.hasOwnProperty('proteinGoal') && !numberRegex.test(state.proteinGoal) ) {
+    if (state.hasOwnProperty('proteinGoal') && !numberRegex.test(state.proteinGoal) && state.setOwnGoal === true ) {
         document.getElementById('proteinGoal').classList.add('is-danger');
         return { blankfield: false ,invalidFormat: true };
     }
-    if (state.hasOwnProperty('fatGoal') && !numberRegex.test(state.fatGoal) ) {
+    if (state.hasOwnProperty('fatGoal') && !numberRegex.test(state.fatGoal) && state.setOwnGoal === true ) {
         document.getElementById('fatGoal').classList.add('is-danger');
         return { blankfield: false ,invalidFormat: true };
     }
-    if (state.hasOwnProperty('carbGoal') && !numberRegex.test(state.carbGoal) ) {
+    if (state.hasOwnProperty('carbGoal') && !numberRegex.test(state.carbGoal) && state.setOwnGoal === true ) {
         document.getElementById('carbGoal').classList.add('is-danger');
+        return { blankfield: false ,invalidFormat: true };
+    }
+    // regex check for custom section
+    if (state.hasOwnProperty('weight') && !numberRegex.test(state.weight) && state.setOwnGoal === false ) {
+        document.getElementById('weight').classList.add('is-danger');
+        return { blankfield: false ,invalidFormat: true };
+    }
+    if (state.hasOwnProperty('height') && !numberRegex.test(state.height) && state.setOwnGoal === false ) {
+        document.getElementById('height').classList.add('is-danger');
+        return { blankfield: false ,invalidFormat: true };
+    }
+    if (state.hasOwnProperty('age') && !numberRegex.test(state.age) && state.setOwnGoal === false ) {
+        document.getElementById('age').classList.add('is-danger');
         return { blankfield: false ,invalidFormat: true };
     }
   }

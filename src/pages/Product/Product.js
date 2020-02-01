@@ -22,8 +22,10 @@ const Product = props => {
 		company:'',
 		kcal: '',
 		proteins: '',
-		fats: '',
-		carbs: ''
+        fats: '',
+        saturated: '',
+        carbs: '',
+        sugars: ''
     };
     const defaultMealState={
 		amount: '',
@@ -44,6 +46,8 @@ const Product = props => {
     const [state, setState] = useState(defaultState)
     const [isLoading,setIsLoading] = useState(true)
     const history = useHistory();
+    const [nutritionalDetails,setNutritionalDetails] = useState(false);
+    const toggleOwnGoal= () => setNutritionalDetails(!nutritionalDetails);
     
 
     const[mealState,setMealState] = useState(defaultMealState)
@@ -151,8 +155,11 @@ const Product = props => {
         isLoading ? <Loading/> :
 		<div className='product-view'>			
             <div className='product-header'>
-                    <h4 className='h4-header'>{showMeal()}</h4>
-                    <p className='p-header'>{dateTimeNow()}</p>
+                    <p>{showMeal()}</p>
+                    <p>{dateTimeNow()}</p>
+                    <span role='button' onClick={()=>{ history.push(`/addproduct/${type1}/${day1}`)}}>
+						<i className="fas fa-arrow-left"></i>
+					</span>
             </div>
             <h4>{state.name}</h4>
             <FormErrors formerrors={state.errors} />
@@ -213,15 +220,36 @@ const Product = props => {
                 </div>
                 
             </form>
-            <div className='details'>
+           
+            <div className='details' role='button' onClick={()=>{toggleOwnGoal()}}>
                 <div className='field'>
                     <p className='control'>
-                        <button className='button-details' type='button'>
+                        <p className='button-details'>
                             Natritional value
-                        </button>
+                        </p>
                     </p>
-                </div>
+                </div>               
             </div>
+            {nutritionalDetails ?
+            <div className='detail-wraper'>
+                <div className='field-details'>
+                        <p>Per 100g:</p>
+                        <p className='p-units'>Calories (kcal)</p>
+                            <p className='p-amount'>{state.kcal}</p>
+                        <p className='p-units'>Proteins (g)</p>
+                            <p className='p-amount'>{state.proteins}</p>
+                        <p className='p-units'>Fat (g)</p>
+                            <p className='p-amount'>{state.fats}</p>
+                        <p className='p-units-s'>Saturated (g)</p>
+                            <p className='p-amount'>{state.saturated}</p>
+                        <p className='p-units'>Carbs (g)</p>
+                            <p className='p-amount'>{state.carbs}</p>
+                        <p className='p-units-s'>Sugars (g)</p>
+                            <p className='p-amount'>{state.sugars}</p>
+                </div>     
+                <p id='starMessage'>*If saturated fats or sugars are equal to 0, there may be no data for these macronutrients</p> 
+            </div>
+            : '' }
 		</div>
 	);
 };

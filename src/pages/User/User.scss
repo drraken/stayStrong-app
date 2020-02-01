@@ -59,18 +59,23 @@
 				margin: 0;
 				margin-bottom: 15px;
 			}
-			
-
 			button{
 				background: none;
 				border: none;
 				color:$black;
+				padding: 12px 80px;
+				font-weight: 600;
 			}
 			a{
 				text-decoration: none;
 				border:none;
 				color: $black;
+				padding: 10px 30px;
+				font-weight: 600;
 			}
+		}
+		#li-user-button{
+			padding: 0;
 		}
 		
 		
