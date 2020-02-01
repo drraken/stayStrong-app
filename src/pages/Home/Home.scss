@@ -26,7 +26,7 @@
 			span{
 				font-size: 20px;
 				font-weight: 700;
-				padding: 5px 200px 5px 0px;
+				padding: 5px 150px 5px 0px;
 			}
 			.li-header-section{
 				display: inline-block;
@@ -143,6 +143,9 @@
 						margin: 0;
 						padding: 0;
 						font-size: 12px;
+						@include respond-to(small) {
+							font-size: 11px;
+						}
 					}
 				}
 			}

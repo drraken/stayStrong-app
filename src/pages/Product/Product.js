@@ -151,8 +151,11 @@ const Product = props => {
         isLoading ? <Loading/> :
 		<div className='product-view'>			
             <div className='product-header'>
-                    <h4 className='h4-header'>{showMeal()}</h4>
-                    <p className='p-header'>{dateTimeNow()}</p>
+                    <p>{showMeal()}</p>
+                    <p>{dateTimeNow()}</p>
+                    <span role='button' onClick={()=>{ history.push(`/addproduct/${type1}/${day1}`)}}>
+						<i className="fas fa-arrow-left"></i>
+					</span>
             </div>
             <h4>{state.name}</h4>
             <FormErrors formerrors={state.errors} />

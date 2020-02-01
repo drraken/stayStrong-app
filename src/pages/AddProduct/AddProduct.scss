@@ -5,15 +5,23 @@
         position: fixed;
         top:0;
         width: 100%;
-        height: 200px;
+        height: 180px;
         background-color: $home-body;
         .header-day-meal{
             position: fixed;
             width: 100%;
             height: 60px;
             background-color: $black;
-            top:70px;
+            top:60px;
             left: 0;
+            span{
+                position: absolute;
+                left: 20px;
+                top:18px;
+                i{
+                    font-size: 25px;
+                }
+            }
             p{
                 text-align: center;
                 margin: 0;
@@ -30,7 +38,7 @@
             padding: 10px 0px;
             width: 94%;
             text-align: center;
-            top:130px;
+            top:117px;
             left:10px;
             position: fixed;
             background-color: $home-body;
@@ -38,7 +46,7 @@
     }
    
     ul{
-       margin-top: 125px;
+       margin-top: 110px;
         a{
             &:nth-child(1){
                 display: none;

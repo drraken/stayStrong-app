@@ -46,14 +46,16 @@ const Home = () => {
 		return API.get('usersParameters','/usersParameters')
 	}
 	useEffect(()=>{
-		async function loadParameter(){
+		async function onLoad(){
 			if (!user.isAuthenticated) {
 				return;
 			}
 			try {
 				const parameters = await loadParameters();
+				const Meals = await loadMeals();
 
-				await parameters.forEach(element => {
+				setMealState(Meals);
+				parameters.forEach(element => {
 					setParameterState({
 						kcalGoal: element.kcalGoal,
 						proteinGoal: element.proteinGoal,
@@ -68,23 +70,9 @@ const Home = () => {
 			}
 			
 		}
-		loadParameter();
-	},[user.isAuthenticated]);
-	useEffect(()=>{
-		async function onLoad() {
-			if (!user.isAuthenticated) {
-			  return;
-			}
-			try {
-			  const Meals = await loadMeals();
-			  setMealState(Meals);
-			} catch (e) {
-			  console.log(e);
-			}
-		  }
 		onLoad();
-	},[user.isAuthenticated])
-	console.log('console test');
+	},[user.isAuthenticated]);
+
 	function dateTimeNow(){
 		const now = new Date()  
 		const daysSinceEpoch = Math.floor(now.getTime() / 86400000)  

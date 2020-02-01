@@ -43,7 +43,7 @@ const User = () => {
 				</div>
 			</div>
 			<ul className='button-redirect'>
-				<li className='top-button'>
+				<li className='top-button' id='li-user-button'>
 					<button type='button' onClick={handleLogOut}>
 							Log out
 					</button>
@@ -71,7 +71,7 @@ const User = () => {
 							});
 						}}
 					>
-					Add/Edit makro goals	
+					Makro goals	
 					</NavLink>
 				</li>
 			</ul>
