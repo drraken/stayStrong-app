@@ -223,8 +223,23 @@ const Product = props => {
                             Natritional value
                         </button>
                     </p>
-                </div>
+                </div>               
             </div>
+            <div className='field-details'>
+                    <p>Per 100g:</p>
+                    <p className='p-units'>Calories (kcal)</p>
+                        <p className='p-amount'>0</p>
+                    <p className='p-units'>Proteins (g)</p>
+                        <p className='p-amount'>0</p>
+                    <p className='p-units'>Fat (g)</p>
+                        <p className='p-amount'>0</p>
+                    <p className='p-units-s'>Saturated (g)</p>
+                        <p className='p-amount'>0</p>
+                    <p className='p-units'>Carbs (g)</p>
+                        <p className='p-amount'>0</p>
+                    <p className='p-units-s'>Sugars (g)</p>
+                        <p className='p-amount'>0</p>
+            </div>      
 		</div>
 	);
 };
