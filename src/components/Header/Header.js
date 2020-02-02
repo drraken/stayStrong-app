@@ -7,6 +7,7 @@ import logoSrc from '../../assets/logo-poziom.png';
 
 const Header = () => {
 	const [{user,location }, dispatch] = useStateValue();
+	console.log(user);
 	return (
 		<header className='full'>
 			<div className='title'>
