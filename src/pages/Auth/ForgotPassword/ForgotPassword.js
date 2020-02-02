@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { NavLink,useHistory} from 'react-router-dom';
 import { Auth } from 'aws-amplify';
@@ -61,7 +62,6 @@ const ForgotPassword = ()=> {
     });
     document.getElementById(event.target.id).classList.remove('is-danger');
   }
-  console.log('test');
     return (
       <section className='section auth'>
         <div className='container'>

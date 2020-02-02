@@ -87,6 +87,14 @@ function validateFormUserParameter(event, state) {
         document.getElementById('age').classList.add('is-danger');
         return { blankfield: false ,invalidFormat: true };
     }
+    // own callory set makro not match exception
+    const calculationSum = state.proteinGoal * 4 + state.fatGoal * 9 + state.carbGoal * 4;
+
+    if ( calculationSum !== Number(state.kcalGoal) && state.setOwnGoal === true ) {
+        document.getElementById('kcalGoal').classList.add('is-danger');
+        return { invalidSum: true };
+    }
+
   }
   
   export default validateFormUserParameter;

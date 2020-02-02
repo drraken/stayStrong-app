@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{useState} from 'react';
+import React from 'react';
 import './User.scss';
-import { Auth,API } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import { NavLink} from 'react-router-dom';
 import { useStateValue } from '../../stateProvider.js';
-import Loading from '../../components/Loader/Loader';
 
 
 const User = () => {
@@ -12,7 +11,7 @@ const User = () => {
 
 	const [{ user }, dispatch] = useStateValue();
 	
-	const [isLoading, setIsLoading] = useState(false);
+
 
 	const handleLogOut = async event => {
 		event.preventDefault();
@@ -31,7 +30,6 @@ const User = () => {
 	
 
 	return (
-		isLoading ? <Loading/> :
 		<div className='user-view'>
 			<div className='userprofile'>
 				<div className='user-section'>

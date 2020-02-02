@@ -29,7 +29,7 @@ const AddEditParameter = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const[state,setState] = useState(defaultState);
 	const [id,setId] = useState('');
-	// const [ownGoal, setOwnGoal] = useState(false);
+
 	const toggleOwnGoal= () => setState({
 		...state,
 		setOwnGoal: !state.setOwnGoal
@@ -128,10 +128,9 @@ const AddEditParameter = () => {
 	const onInputChange = event => {
 		setState({
 			...state,
-			[event.target.id]: event.target.value
+			[event.target.id]: event.target.value.replace(/,/g, '.')
 		});
 	};
-
 	return (
 		isLoading ? <Loader/> :
 		<div className='AddEditParameter-view'>
@@ -139,7 +138,7 @@ const AddEditParameter = () => {
             <h2>Add your makro goals</h2>
 			: <h2>Edit your makro goals</h2>}
 			<label className='container'>I want to set my own makro goals
-				<input type='checkbox' onClick={()=>{toggleOwnGoal()}}></input>
+				<input type='checkbox' defaultChecked={state.setOwnGoal ? 'checked' : ''} onClick={()=>{toggleOwnGoal()}}></input>
 				<span className='checkmark'></span>
 			</label>
 			<FormErrors formerrors={state.errors} />
@@ -252,6 +251,7 @@ const AddEditParameter = () => {
 								value={state.proteinGoal}
 								onChange={onInputChange}
 							/>
+							<span className='percentageHelp'>{Number(state.proteinGoal*4/state.kcalGoal*100).toFixed(2)}%</span>
 						</label>
 					</div>
 					<div className='field'>
@@ -265,10 +265,12 @@ const AddEditParameter = () => {
 								value={state.fatGoal}
 								onChange={onInputChange}
 							/>
+							<span className='percentageHelp'>{Number(state.fatGoal*4/state.kcalGoal*100).toFixed(2)}%</span>
 						</label>
 					</div>
 					<div className='field'>
 						<label className='control'>Carb:
+							
 							<input
 								className='inputModel'
 								type='text'
@@ -278,6 +280,7 @@ const AddEditParameter = () => {
 								value={state.carbGoal}
 								onChange={onInputChange}
 							/>
+							<span className='percentageHelp'>{Number(state.carbGoal*4/state.kcalGoal*100).toFixed(2)}%</span>
 						</label>
 					</div>
 					<div className='field'>
@@ -286,6 +289,7 @@ const AddEditParameter = () => {
 								Submit
 							</button>
 						</p>
+						<span className='percentageHelp'>{Number((state.carbGoal*4+state.proteinGoal*4+state.fatGoal*9)/state.kcalGoal*100).toFixed(2)}%</span>
 					</div>
             	</form>
 			</div> 

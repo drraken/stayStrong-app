@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { StateProvider, useStateValue } from './stateProvider.js';
+import { StateProvider} from './stateProvider.js';
 import './App.scss';
 import AppContent from './AppContent.js';
 
