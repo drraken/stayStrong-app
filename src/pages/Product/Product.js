@@ -60,7 +60,6 @@ const Product = props => {
         async function onLoad() {
             try {
                 const product= await loadProduct();
-                // const { name,company,kcal,proteins,fats,carbs } = product;
                 setState(product);
                 setIsLoading(false);
             } catch (e) {
@@ -87,7 +86,6 @@ const Product = props => {
     
 	async function handleSubmit(event) {
         event.preventDefault();
-        console.log(mealState);
         setIsLoading(true);
         const error = Validate(event, mealState);
 		if (error) {

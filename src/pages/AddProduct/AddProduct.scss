@@ -33,15 +33,23 @@
             }
         }
         .search-box{
-            border: 1px solid $white-darker-three;
             margin-top: 10px;
             padding: 10px 0px;
-            width: 94%;
+            width: 21rem;
             text-align: center;
             top:117px;
-            left:10px;
             position: fixed;
+            display: flex;
             background-color: $home-body;
+            input{
+                border:1px solid $white-darker-three;
+            }
+            @include respond-to(small) {
+                width: 18rem;
+            }
+            @include respond-to(large) {
+                width: 25rem;
+            }
         }
     }
    
