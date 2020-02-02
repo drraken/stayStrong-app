@@ -7,12 +7,8 @@ import { useStateValue } from '../../stateProvider.js';
 
 
 const User = () => {
-	
-
 	const [{ user }, dispatch] = useStateValue();
 	
-
-
 	const handleLogOut = async event => {
 		event.preventDefault();
 		try {
@@ -26,8 +22,6 @@ const User = () => {
 			console.log(error.message);
 		}
 	};
-
-	
 
 	return (
 		<div className='user-view'>
