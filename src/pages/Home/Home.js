@@ -11,7 +11,7 @@ import Loader from '../../components/Loader/Loader';
 
 
 const Home = () => {
-	const [{user},dispatch] = useStateValue();
+	const [{user}] = useStateValue();
 
 
 	const [mealState,setMealState] = useState([]);
@@ -40,7 +40,6 @@ const Home = () => {
 			return e.mealId !== mealId
 		})
 		setMealState(updatedItems);
-		console.log(mealState);
 	}
 	function loadParameters(){
 		return API.get('usersParameters','/usersParameters')
@@ -79,6 +78,7 @@ const Home = () => {
 		return daysSinceEpoch;
 	};
 	const [dateView,setDateView] = useState(dateTimeNow());
+	const [currentHeaderDate,setCurrentHeaderDate] = useState(dateTimeNow());
 	useEffect(()=>{
 		setIsClickedBreakfast(false);
 		setIsClickedSnack1(false);
@@ -194,21 +194,35 @@ const Home = () => {
 	return (
 		isLoading ? <Loader/> :
 		<div className='home-view'>
-			{/* <Header /> */}
 			<div className='content'>	
 
 				<div className='home-header'>
-					<span><i className="fas fa-chevron-left"></i></span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow()-1)}
-					className={dateView == (dateTimeNow()-1) ? 'currentSelectedDay ' : ''}
-					>Yesterday</span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow())}
-					className={dateView == dateTimeNow() ? 'currentSelectedDay ' : ''}
-					>Today</span>
-					<span role='button' onClick={()=> setDateView(dateTimeNow()+1)}
-					className={dateView == (dateTimeNow()+1) ? 'currentSelectedDay ' : ''}
-					>Tomorrow</span>
-					<span><i className="fas fa-chevron-right"></i></span>
+					<span role='button' className='button-chevron-left' onClick={()=>{setCurrentHeaderDate(currentHeaderDate-1)}}><i className="fas fa-chevron-left"></i></span>
+
+					<span role='button' onClick={()=> setDateView(currentHeaderDate-1)}
+					 className={dateView === currentHeaderDate-1 ? 'currentSelectedDay ' : ''}
+					>{currentHeaderDate === dateTimeNow() ? 'Yesterday' :
+					currentHeaderDate === dateTimeNow()+1 ? 'Today' :
+					currentHeaderDate === dateTimeNow()+2 ? 'Tommorow' :
+					String(new Date((currentHeaderDate-1)*86400000)).slice(4,10)}</span>
+
+					<span role='button' onClick={()=> setDateView(currentHeaderDate)}
+					 className={dateView === currentHeaderDate ? 'currentSelectedDay ' : ''}
+					>{currentHeaderDate === dateTimeNow() ? 'Today' : 
+					currentHeaderDate === dateTimeNow()-1 ? 'Yesterday' :
+					currentHeaderDate === dateTimeNow()+1 ? 'Tommorow' :
+					String(new Date(currentHeaderDate*86400000)).slice(4,10)
+					}</span>
+
+					<span role='button' onClick={()=> setDateView(currentHeaderDate+1)}
+					 className={dateView === currentHeaderDate+1 ? 'currentSelectedDay ' : ''}
+					>{currentHeaderDate === dateTimeNow() ? 'Tommorow' :
+					 currentHeaderDate === dateTimeNow()-1 ? 'Today' :
+					 currentHeaderDate === dateTimeNow()-2 ? 'Yesterday' :
+					 String(new Date((currentHeaderDate+1)*86400000)).slice(4,10)}
+					</span>
+
+					<span role='button' className='button-chevron-right' onClick={()=>{setCurrentHeaderDate(currentHeaderDate+1)}}><i className="fas fa-chevron-right"></i></span>
 				</div>
 
 
@@ -262,11 +276,7 @@ const Home = () => {
 				<div className='FooterHome'>
 					<ul>
 						<li>
-							<span
-								className='proggresiveLine'
-								id='parentLineElement'
-								
-							/>
+							<span className='proggresiveLine' id='parentLineElement'/>
 							<span
 								className='proggresiveLine'
 								id='colorLineOverlay'
@@ -279,10 +289,7 @@ const Home = () => {
 							</span>
 						</li>
 						<li>
-							<span
-								className='proggresiveLine'
-								id='parentLineElement'
-							/>
+							<span className='proggresiveLine' id='parentLineElement'/>
 							<span
 								className='proggresiveLine'
 								id='colorLineOverlay'
@@ -295,10 +302,7 @@ const Home = () => {
 							</span>
 						</li>
 						<li>
-							<span
-								className='proggresiveLine'
-								id='parentLineElement'
-							/>
+							<span className='proggresiveLine' id='parentLineElement'/>
 							<span
 								className='proggresiveLine'
 								id='colorLineOverlay'
@@ -311,10 +315,7 @@ const Home = () => {
 							</span>
 						</li>
 						<li>
-							<span
-								className='proggresiveLine'
-								id='parentLineElement'
-							/>
+							<span className='proggresiveLine'	id='parentLineElement'/>
 							<span
 								className='proggresiveLine'
 								id='colorLineOverlay'

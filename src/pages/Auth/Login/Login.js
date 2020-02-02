@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory, NavLink } from 'react-router-dom';
@@ -24,11 +25,9 @@ const Login = () => {
 
 
 	const handleSubmit = async event => {
-		console.log(state);
+
 		event.preventDefault();
 		setIsLoading(true);
-	
-		console.log(state);
 		const error = Validate(event, state);
 		if (error) {
 		  setState({

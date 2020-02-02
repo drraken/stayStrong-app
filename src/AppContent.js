@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// import Navigation from './components/Navigation/Navigation.js';
 import Header from './components/Header/Header.js';
 import AuthenticatedRoute from './components/Routes/AuthenticatedRoute.js';
 import Home from './pages/Home/Home';
@@ -13,7 +13,6 @@ import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ForgotPasswordVerification from './pages/Auth/ForgotPasswordVerification/ForgotPasswordVerification';
 import ChangePasswordConfirm from './pages/Auth/ChangePasswordConfirm/ChangePasswordConfirm.js';
 import ChangePassword from './pages/Auth/ChangePassword/ChangePassword.js';
-import NotFound from './pages/NotFound/NotFound';
 import AddProduct from './pages/AddProduct/AddProduct.js';
 import NewProduct from './pages/NewProduct/NewProduct.js';
 import Product from './pages/Product/Product.js';
@@ -98,11 +97,8 @@ const AppContent = () => {
 					exact 
 					component={AddEditParameter}
 					props={user}
-		        />
-				{/* <Route component={NotFound}/> */}
-				
+		        />	
 			</main>
-			{/* <Navigation /> */}
 		</Router>
 	);
 };

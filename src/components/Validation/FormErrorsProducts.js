@@ -19,7 +19,15 @@ function FormErrorsProducts(props) {
         </div>
       </div>
     );
-  } 
+  } else if(props.formerrors && (props.formerrors.invalidSum)){
+    return(
+    <div className='error container no-border help'>
+      <div className='help'>
+        {props.formerrors.invalidSum ? 'Sum of macronutrient is not equal to kcal' : ''}
+      </div>
+    </div>
+    )
+  }
   else {
     return <div />;
   }

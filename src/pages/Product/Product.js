@@ -223,28 +223,28 @@ const Product = props => {
            
             <div className='details' role='button' onClick={()=>{toggleOwnGoal()}}>
                 <div className='field'>
-                    <p className='control'>
+                    <span className='control'>
                         <p className='button-details'>
                             Natritional value
                         </p>
-                    </p>
+                    </span>
                 </div>               
             </div>
             {nutritionalDetails ?
             <div className='detail-wraper'>
                 <div className='field-details'>
-                        <p>Per 100g:</p>
-                        <p className='p-units'>Calories (kcal)</p>
+                        <p className='p-header'>Per 100g:</p>
+                        <span className='p-units'>Calories (kcal)</span>
                             <p className='p-amount'>{state.kcal}</p>
-                        <p className='p-units'>Proteins (g)</p>
+                        <span className='p-units'>Proteins (g)</span>
                             <p className='p-amount'>{state.proteins}</p>
-                        <p className='p-units'>Fat (g)</p>
+                        <span className='p-units'>Fat (g)</span>
                             <p className='p-amount'>{state.fats}</p>
-                        <p className='p-units-s'>Saturated (g)</p>
+                        <span className='p-units-s'>Saturated (g)</span>
                             <p className='p-amount'>{state.saturated}</p>
-                        <p className='p-units'>Carbs (g)</p>
+                        <span className='p-units'>Carbs (g)</span>
                             <p className='p-amount'>{state.carbs}</p>
-                        <p className='p-units-s'>Sugars (g)</p>
+                        <span className='p-units-s'>Sugars (g)</span>
                             <p className='p-amount'>{state.sugars}</p>
                 </div>     
                 <p id='starMessage'>*If saturated fats or sugars are equal to 0, there may be no data for these macronutrients</p> 
