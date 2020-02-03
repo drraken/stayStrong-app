@@ -8,13 +8,38 @@
       "type": "image/x-icon"
     },
     {
-      "src": "./assets/start.png",
-      "sizes": "512x512 192x192",
+      "src": "icon192.png",
+      "sizes": "192x192",
       "type": "png"
     },
     {
-      "src": "icon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "icon128.png",
+      "sizes": "128x128",
+      "type": "png"
+    },
+    {
+      "src": "icon512.png",
+      "sizes": "512x512",
+      "type": "png"
+    },
+    {
+      "src": "icon64.png",
+      "sizes": "64x64",
+      "type": "png"
+    },
+    {
+      "src": "icon32.png",
+      "sizes": "32x32",
+      "type": "png"
+    },
+    {
+      "src": "icon24.png",
+      "sizes": "24x24",
+      "type": "png"
+    },
+    {
+      "src": "icon16.png",
+      "sizes": "16x16",
       "type": "png"
     }
   ],
