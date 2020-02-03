@@ -229,7 +229,7 @@ const Home = () => {
 				<div className='home-container'>
 					<div className='Breakfast-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse()} >Breakfast </span>
-						<NavLink to={`/addproduct/breakfast/${dateView.toString()}`} className='li-header-section'>
+						<NavLink to={`/addproduct/breakfast/${dateView.toString()}`} className='li-header-section plus-button-meal'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
 						
@@ -238,7 +238,7 @@ const Home = () => {
 					</div>
 					<div className='Snack1-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse1()} >Snack I </span>
-						<NavLink to={`/addproduct/snack1/${dateView.toString()}`} className='li-header-section'>
+						<NavLink to={`/addproduct/snack1/${dateView.toString()}`} className='li-header-section plus-button-meal'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
 						{ renderSumMealList(mealState,'snack1')}
@@ -246,7 +246,7 @@ const Home = () => {
 					</div>
 					<div className='Lunch-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse2()} >Lunch </span>
-						<NavLink to={`/addproduct/lunch/${dateView.toString()}`} className='li-header-section'>
+						<NavLink to={`/addproduct/lunch/${dateView.toString()}`} className='li-header-section plus-button-meal'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
 						{ renderSumMealList(mealState,'lunch')}
@@ -254,7 +254,7 @@ const Home = () => {
 					</div>
 					<div className='Snack2-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse3()} >Snack II </span>
-						<NavLink to={`/addproduct/snack2/${dateView.toString()}`} className='li-header-section'>
+						<NavLink to={`/addproduct/snack2/${dateView.toString()}`} className='li-header-section plus-button-meal'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
 						{renderSumMealList(mealState,'snack2')}
@@ -262,7 +262,7 @@ const Home = () => {
 					</div>
 					<div className='Dinner-section'>
 						<span className='li-header-section' role='button' onClick={()=> toggleTrueFalse4()} >Dinner </span>
-						<NavLink to={`/addproduct/dinner/${dateView.toString()}`} className='li-header-section'>
+						<NavLink to={`/addproduct/dinner/${dateView.toString()}`} className='li-header-section plus-button-meal'>
 							<i className='fas fa-plus-circle icon-2x'></i>
 						</NavLink>
 						{renderSumMealList(mealState,'dinner')}
