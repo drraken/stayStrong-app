@@ -160,6 +160,7 @@ const Product = props => {
 					</span>
             </div>
             <h4>{state.name}</h4>
+            <p id='company-information'>{state.company}</p>
             <FormErrors formerrors={state.errors} />
             <form onSubmit={handleSubmit}>
                 
