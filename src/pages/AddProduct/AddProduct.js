@@ -55,20 +55,6 @@ const AddProduct = props => {
 			setNewProductState(filteredProducts);
 	},[productsState, search]);
 
-	// function renderProductList(newProductSate){
-	// 	return [{}].concat(newProductSate).map((item) =>
-	// 		// item !== undefined ?
-	// 		// console.log(item)
-	// 		// <NavLink key={item.productId} to={`/products/${type}/${day}/${item.productId}`}>		
-	// 		// 	<h3>{item.name}</h3>
-	// 		// 	{item.company === 0 ? null : <p>{item.company}</p>}
-	// 		// 	<p>100 g</p>
-	// 		// 	<p>{item.kcal} kcal</p>		
-	// 		// </NavLink>
-	// 		// :
-	// 		// ''
-	// 	);
-	// }
 	const productList = Object.keys(newProductSate).map(product =>(
 		<NavLink key={newProductSate[product].productId} to={`/products/${type}/${day}/${newProductSate[product].productId}`}>		
 			<h3>{newProductSate[product].name}</h3>
