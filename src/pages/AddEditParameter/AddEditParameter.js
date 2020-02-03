@@ -265,7 +265,7 @@ const AddEditParameter = () => {
 								value={state.fatGoal}
 								onChange={onInputChange}
 							/>
-							<span className='percentageHelp'>{Number(state.fatGoal*4/state.kcalGoal*100).toFixed(2)}%</span>
+							<span className='percentageHelp'>{Number(state.fatGoal*9/state.kcalGoal*100).toFixed(2)}%</span>
 						</label>
 					</div>
 					<div className='field'>
